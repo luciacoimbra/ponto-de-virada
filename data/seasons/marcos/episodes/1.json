@@ -1,0 +1,96 @@
+{
+  "id": 1,
+
+  "title": "Quem Está Sentado no Trono?",
+
+  "subtitle": "Jesus é Rei.",
+
+  "summary": "Jesus inaugura o Reino de Deus e convida pessoas comuns a recalcularem sua direção, abandonando antigas rotas para seguirem um novo caminho.",
+
+  "img": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1400&auto=format&fit=crop",
+
+  "scriptureHighlight": {
+
+    "reference": "Marcos 1:1–15",
+
+    "highlightVerse": "Marcos 1:15",
+
+    "verse": "O Reino de Deus está próximo. Arrependam-se e creiam nas boas notícias.",
+
+    "fullText": "1 Início do evangelho de Jesus Cristo, o Filho de Deus.\n\n2 Conforme está escrito no profeta Isaías: 'Eis que envio o meu mensageiro à tua frente...'\n\n3 Voz do que clama no deserto: 'Preparem o caminho do Senhor.'\n\n4 João apareceu no deserto pregando batismo de arrependimento.\n\n5 Toda a região da Judeia ia até ele.\n\n6 João vestia roupas de pelos de camelo.\n\n7 E pregava: 'Depois de mim vem alguém mais poderoso do que eu.'\n\n8 'Eu os batizei com água, mas ele os batizará com o Espírito Santo.'\n\n9 Naqueles dias Jesus veio de Nazaré da Galileia.\n\n10 Ao sair da água, viu os céus se abrindo.\n\n11 E uma voz dos céus disse: 'Tu és meu Filho amado.'\n\n12 O Espírito o levou ao deserto.\n\n13 E ali foi tentado por Satanás.\n\n14 Depois que João foi preso, Jesus foi para a Galileia pregando o evangelho.\n\n15 'O tempo está cumprido. O Reino de Deus está próximo. Arrependam-se e creiam nas boas notícias.'"
+  },
+
+  "blocks": [
+
+    {
+      "type": "opening",
+
+      "label": "Abertura",
+
+      "title": "Já percebeu como o GPS recalcula a rota?",
+
+      "content": [
+        "Às vezes o desvio parece pequeno.",
+        "Pequenas direções criam grandes destinos.",
+        "Talvez hoje seja o momento de recalcular."
+      ]
+    },
+
+    {
+      "type": "reflection",
+
+      "label": "Reflexão",
+
+      "title": "Quem está sentado no trono?",
+
+      "content": [
+        "Todo coração possui um centro de comando.",
+        "Algo sempre governa nossas decisões.",
+        "Jesus inaugura um Reino que confronta nossos próprios reinados."
+      ]
+    },
+
+    {
+      "type": "discussion",
+
+      "label": "Discussão",
+
+      "title": "O que precisa ser recalculado?",
+
+      "content": [
+        "Existe alguma área em que você sente que perdeu a direção?",
+        "O arrependimento é uma mudança de rota.",
+        "O Reino de Deus nos chama para uma nova direção."
+      ]
+    },
+
+    {
+      "type": "application",
+
+      "label": "Aplicação",
+
+      "title": "Um novo caminho começa hoje",
+
+      "content": [
+        "Jesus não chama pessoas perfeitas.",
+        "Ele chama pessoas dispostas.",
+        "Toda mudança começa com uma decisão."
+      ]
+    },
+
+    {
+      "type": "prayer",
+
+      "label": "Oração",
+
+      "title": "Entregando o controle",
+
+      "content": [
+        "Ore pedindo coragem para confiar em Jesus.",
+        "Peça discernimento para ouvir a direção de Deus.",
+        "Entregue novamente o trono do coração a Cristo."
+      ]
+    }
+
+  ]
+}

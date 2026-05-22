@@ -1,1 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+  <title>O Ponto de Virada</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
 
+<!-- ── HEADER ── -->
+<header>
+  <div class="container header-inner">
+    <button class="logo" onclick="openManifesto()">O Ponto de Virada</button>
+    <div class="header-actions">
+      <button onclick="openSearch()">Pesquisar</button>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════ HOME ══════════ -->
+<div id="home-view">
+
+  <section class="hero">
+    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1400&auto=format&fit=crop" alt="Paisagem dramática — O Ponto de Virada">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <div class="container">
+        <div class="badge">TEMPORADA 1</div>
+        <h1 class="font-display">Marcos</h1>
+        <p>Uma jornada sobre direção, identidade, silêncio, influência e transformação através do Evangelho de Marcos.</p>
+        <div class="keywords" style="margin-top:20px;">DIREÇÃO · IDENTIDADE · SILÊNCIO · TRANSFORMAÇÃO · JESUS</div>
+        <button
+  id="seasonCTA"
+  class="primary-btn"
+  onclick="loadSeason('data/seasons/marcos/meta.json')"
+>
+  Entrar na Temporada
+</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title font-display">Em breve</h2>
+      <div class="season-card">
+        <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?q=80&w=1200&auto=format&fit=crop" alt="Próxima temporada — Lucas">
+        <div class="season-overlay"></div>
+        <div class="season-content">
+          <small>PRÓXIMA TEMPORADA</small>
+          <h3>Lucas</h3>
+          <p>Parábolas, encontros e histórias sobre compaixão, graça e restauração.</p>
+          <div class="keywords" style="margin-top:16px;">COMPAIXÃO · ENCONTROS · GRAÇA · PARÁBOLAS · ESPERANÇA</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ══════════ MANIFESTO ══════════ -->
+<div class="popup" id="manifestoPopup">
+  <div class="popup-card">
+    <h2 class="font-display">O Manifesto</h2>
+    <p>O Ponto de Virada nasceu para desacelerar.
+Para criar um espaço silencioso em meio ao excesso de estímulos, distrações e superficialidade.
+
+Não é apenas uma revista devocional.
+É uma experiência contemplativa.
+
+Cada episódio foi pensado para provocar perguntas honestas, conversas profundas e direção espiritual real.
+
+Menos performance. Mais sinceridade.
+Menos barulho. Mais presença.
+Menos aparência. Mais transformação.</p>
+    <button class="close-btn" onclick="closeManifesto()">Fechar ×</button>
+  </div>
+</div>
+
+<!-- ══════════ SEARCH ══════════ -->
+<div class="search-modal" id="searchModal">
+  <div class="search-box">
+    <input type="text" placeholder="Pesquisar episódios..." id="searchInput" oninput="performSearch()"/>
+    <div class="results" id="results"></div>
+    <button class="close-btn" onclick="closeSearch()">Fechar ×</button>
+  </div>
+</div>
+
+<!-- ══════════ SCRIPTURE MODAL ══════════ -->
+<div class="popup" id="scriptureModal">
+  <div class="popup-card scripture-card">
+    <p class="scripture-ref-label" id="scriptureRef"></p>
+    <p class="scripture-body" id="scriptureText"></p>
+    <button class="close-btn" onclick="closeScripture()">Fechar ×</button>
+  </div>
+</div>
+
+<!-- ══════════ SEASON ══════════ -->
+<div id="season-view" class="hidden">
+  <div class="container">
+    <div class="episodes-header">
+      <button class="back" onclick="goHome()">Voltar</button>
+      <h1 class="episodes-title font-display" id="seasonTitle">Marcos</h1>
+      <div class="season-intro">
+        <p class="episodes-sub collapsed" id="seasonIntro">Antes de começar esta jornada, você precisa entender uma coisa:
+
+O Evangelho de Marcos não foi escrito para pessoas confortáveis.
+
+Ele foi escrito para gente cansada. Confusa. Com medo.
+Gente tentando continuar acreditando enquanto o mundo parecia desmoronar.
+
+Os estudiosos acreditam que Marcos foi o primeiro Evangelho escrito, provavelmente entre os anos 65 e 70 d.C., durante um período brutal de perseguição aos cristãos em Roma.
+
+Seguir Jesus naquela época não era algo "cool". Era perigoso.
+
+Cristãos estavam sendo presos. Torturados. Mortos.
+
+E é nesse cenário que Marcos escreve — por isso o livro parece urgente o tempo inteiro.
+
+Marcos não perde tempo. Não faz introduções longas. Ele simplesmente começa — como uma explosão.
+
+Jesus está sempre em movimento: atravessando cidades, confrontando autoridades, curando pessoas, mudando vidas.
+
+Porque Jesus não veio apenas ensinar boas ideias. Ele veio inaugurar um Reino.
+
+Seu trono será uma cruz. Seu poder será amor sacrificial. Sua vitória virá através da entrega.
+
+E talvez isso seja exatamente o que torna Jesus tão desconfortável ainda hoje.
+
+Porque todo mundo quer um rei que resolva problemas. Mas poucos querem entregar o controle.
+
+A pergunta central deste Evangelho não é apenas: "Quem é Jesus?"
+
+A verdadeira pergunta é: "Quem está sentado no trono da sua vida?"
+
+Prepare-se. A pedra já começou a rolar.</p>
+        <button class="expand-btn" id="expandBtn" onclick="toggleIntro()">...mais</button>
+      </div>
+    </div>
+    <div class="episode-list" id="episodeList">
+      <p style="color:var(--soft);font-size:14px;padding:20px 0;">Carregando episódios…</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ EPISODE ══════════ -->
+<div id="episode-view" class="hidden">
+  <div class="container">
+    <div class="episode-header">
+      <button class="back" onclick="backToSeason()">Voltar</button>
+      <h1 class="episode-title font-display" id="episodeTitle"></h1>
+      <p class="episode-sub" id="episodeSubtitle"></p>
+    </div>
+    <div id="episodeContent"></div>
+  </div>
+</div>
+
+<script src="js/navigation.js"></script>
+<script src="js/episodes.js"></script>
+<script src="js/search.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+</body>
+</html>

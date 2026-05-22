@@ -1,0 +1,14 @@
+[
+  {
+    "id": "marcos",
+    "title": "Marcos",
+    "subtitle": "O Rei em Movimento",
+    "file": "data/seasons/marcos/meta.json"
+  },
+  {
+    "id": "lucas",
+    "title": "Lucas",
+    "subtitle": "O Evangelho da Graça",
+    "file": "data/seasons/lucas/meta.json"
+  }
+]
