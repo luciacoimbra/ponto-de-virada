@@ -16,7 +16,9 @@ function goHome() {
 }
 
 function backToSeason() {
-  showOnly('season-view');
+  collapseSeasonIntro();
+  collapseSeasonIntro();
+showOnly('season-view');
 }
 
 function openSeason(seasonId = 'marcos') {
@@ -78,3 +80,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
   showOnly('home-view');
 });
+
+function toggleIntro() {
+  const intro = document.getElementById('seasonIntro');
+  const btn = document.getElementById('expandBtn');
+
+  if (!intro || !btn) return;
+
+  const isCollapsed = intro.classList.toggle('collapsed');
+
+  btn.textContent = isCollapsed
+    ? '...mais'
+    : 'mostrar menos';
+}
+
+function collapseSeasonIntro() {
+  const intro = document.getElementById('seasonIntro');
+  const btn = document.getElementById('expandBtn');
+
+  if (!intro || !btn) return;
+
+  intro.classList.add('collapsed');
+  btn.textContent = '...mais';
+}

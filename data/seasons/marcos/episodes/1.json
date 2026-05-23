@@ -3,7 +3,8 @@
   "title": "Quem Está Sentado no Trono?",
   "subtitle": "Jesus é Rei.",
   "summary": "Jesus não veio apenas como salvador, ele veio como Rei. E essa realeza exige uma resposta concreta: quem ocupa o trono do seu coração?",
-  "img": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1400&auto=format&fit=crop",
+  "challenge": "Durante essa semana, pense em uma pequena escolha que precisa corrigir. Como você vai reposicionar o trono do seu coração para Jesus?",
+   "img": "https://images.pexels.com/photos/8112196/pexels-photo-8112196.jpeg?auto=compress&cs=tinysrgb&w=1400",
   "scriptureHighlight": {
     "reference": "Marcos 1:1–15",
     "highlightVerse": "Marcos 1:15",
@@ -14,8 +15,8 @@
     {
       "type": "opening",
       "label": "Ponto de partida",
-      "title": "Um grau de diferença muda o destino?",
-      "subtitle": "Pequenas direções criam grandes destinos.",
+      "title": "Pequenos desvios mudam destinos",
+      "subtitle": "Um grau parece pouco, mas pode levar para outro lugar.",
       "content": [
         "Se um avião decola de Los Angeles em direção a Nova York, o piloto precisa definir uma trajetória específica para pousar onde pretende.",
         "Se ele estiver desviado por apenas um grau, não vai acabar em Nova York — vai acabar em Washington, D.C.",
@@ -26,8 +27,8 @@
     {
       "type": "context",
       "label": "Cenário",
-      "title": "O Ungido",
-      "subtitle": "Quem Israel esperava quando ouvia Messias?",
+      "title": "Marcos anuncia um Rei",
+      "subtitle": "As primeiras palavras do Evangelho já carregam uma declaração de autoridade.",
       "content": [
         "Messias é uma palavra hebraica que significa ungido.",
         "No Antigo Testamento, o ungido era o Rei de Israel.",
@@ -38,102 +39,134 @@
     {
       "type": "context",
       "label": "Cenário",
-      "title": "Filho do Rei",
-      "subtitle": "Por que chamar Jesus de Filho de Deus era uma provocação?",
+      "title": "Filho de Deus também é título de Rei",
+      "subtitle": "Essa expressão não era neutra no mundo de Marcos.",
       "content": [
         "Quando ouvimos Filho de Deus, pensamos na divindade de Jesus.",
-        "Mas em Israel antigo, esse título também era um título do Rei.",
-        "Na Roma antiga, chamar outra pessoa de Filho de Deus era uma afronta direta ao imperador."
+        "Mas em Israel antigo, esse título também era um título real.",
+        "Na Roma antiga, chamar outra pessoa de Filho de Deus era uma afronta direta ao imperador.",
+        "Marcos está apresentando Jesus como alguém acima de qualquer trono humano."
       ]
     },
     {
       "type": "context",
       "label": "Cenário",
-      "title": "Boa notícia",
-      "subtitle": "Por que evangelho era uma palavra política?",
+      "title": "Evangelho era anúncio de governo",
+      "subtitle": "Antes de ser uma palavra religiosa, era uma notícia sobre reinos.",
       "content": [
-        "Hoje evangelho é uma palavra religiosa.",
-        "No mundo antigo, era o anúncio de que um novo rei havia assumido o trono.",
-        "Quando Marcos escreve sobre Jesus, ele está anunciando um novo Rei."
+        "Hoje evangelho soa como uma palavra religiosa.",
+        "No mundo antigo, porém, era o anúncio de que um novo rei havia assumido o trono.",
+        "Quando Marcos escreve sobre o evangelho de Jesus, ele está anunciando que um novo Rei chegou.",
+        "A boa notícia é que esse Rei não governa para oprimir, mas para restaurar."
       ]
     },
     {
       "type": "reflection",
-      "label": "Mergulho",
-      "title": "Pedra em movimento",
-      "subtitle": "Como Marcos apresenta Jesus logo no começo?",
+      "label": "Entendendo o Reino",
+      "title": "Jesus não é apenas inspiração",
+      "subtitle": "Ele não veio ocupar um espaço decorativo na vida.",
       "content": [
-        "Marcos é um evangelho cheio de ação.",
-        "Jesus aparece como uma força imparável, caminhando em direção à sua missão.",
-        "A ideia de realeza aparece desde os primeiros versículos."
-      ]
-    },
-    {
-      "type": "reflection",
-      "label": "Mergulho",
-      "title": "Concorrente",
-      "subtitle": "Jesus veio como professor ou como Rei?",
-      "content": [
-        "Jesus não era apenas um professor.",
-        "Não era apenas um curador.",
+        "Jesus não veio apenas para ser uma referência bonita, uma inspiração religiosa ou uma ideia confortável.",
         "Ele veio como Rei.",
-        "O Reino de Deus chegou perto."
+        "Isso significa que a mensagem de Marcos não pede apenas admiração.",
+        "Ela pede resposta, direção e entrega."
       ]
     },
     {
       "type": "reflection",
-      "label": "Mergulho",
-      "title": "O trono",
-      "subtitle": "Seu coração também possui um trono.",
+      "label": "Entendendo o Reino",
+      "title": "Todo coração tem um trono",
+      "subtitle": "E esse trono não fica vazio.",
       "content": [
         "Tronos são feitos para um único assento.",
-        "Jesus reivindica autoridade sobre tudo.",
-        "Existe um trono no seu coração.",
-        "A questão é: quem está sentado nele?"
+        "Existe um trono no coração de cada pessoa.",
+        "Esse lugar é ocupado por aquilo que governa decisões, desejos, medos e prioridades.",
+        "A pergunta não é se existe um rei. A pergunta é quem está sentado ali."
+      ]
+    },
+    {
+      "type": "reflection",
+      "label": "Entendendo o Reino",
+      "title": "Arrependimento é recalcular a rota",
+      "subtitle": "Não é vergonha. É mudança de direção.",
+      "content": [
+        "Quando Jesus anuncia que o Reino de Deus chegou, ele chama as pessoas ao arrependimento e à fé.",
+        "Arrependimento não é apenas sentir culpa.",
+        "É perceber que a rota atual está levando para longe de Deus.",
+        "É permitir que Jesus reorganize o centro da vida."
       ]
     },
     {
       "type": "leader",
       "label": "Guia do líder",
-      "title": "Conduzindo a conversa",
-      "subtitle": "Como transformar conteúdo em conversa real?",
+      "title": "Como conduzir este encontro",
+      "subtitle": "Use este roteiro para transformar conteúdo em conversa real.",
+      "steps": [
+        {
+          "title": "Abra com uma oração",
+          "text": "Peça a Deus que abra corações para ouvir o que ele quer falar hoje."
+        },
+        {
+          "title": "Conte a história do avião",
+          "text": "Use o ponto de partida para mostrar como pequenas escolhas podem mudar uma trajetória inteira."
+        },
+        {
+          "title": "Leia Marcos 1:1–15",
+          "text": "Leia em voz alta ou peça para alguém do grupo ler. Mostre que o texto inteiro prepara o versículo-chave."
+        },
+        {
+          "title": "Explique o cenário",
+          "text": "Mostre que Messias, Filho de Deus e evangelho eram palavras fortes, ligadas a realeza e governo."
+        },
+        {
+          "title": "Conduza para o coração",
+          "text": "Ajude o grupo a sair da informação e chegar à pergunta central: quem ocupa o trono da vida?"
+        }
+      ],
       "content": [
-        "Abra com uma oração.",
-        "Conte a história do avião.",
-        "Leia Marcos 1:1–15 com o grupo.",
-        "Apresente cada bloco e faça perguntas abertas."
+        "Não transforme o encontro em palestra.",
+        "Use os blocos como caminho para conversa.",
+        "Dê tempo para respostas sinceras.",
+        "O objetivo é ajudar cada pessoa a perceber que Jesus não quer apenas ser conhecido, mas governar o centro da vida."
       ]
     },
     {
       "type": "discussion",
       "label": "Discussão",
-      "title": "Perguntas para o grupo",
-      "subtitle": "Converse com sinceridade.",
+      "title": "Perguntas para abrir conversa",
+      "subtitle": "Use uma pergunta por vez. Dê espaço para respostas reais.",
+      "questions": [
+        "O que mais tenta ocupar o trono do coração dos jovens hoje: aprovação, ansiedade, comparação, controle ou outra coisa?",
+        "Você já percebeu alguma pequena escolha que parecia simples, mas começou a mudar sua direção espiritual?",
+        "Existe alguma área da sua vida em que você sente que está tentando controlar tudo sozinho? O que te impede de entregar esse lugar para Jesus hoje?"
+      ],
       "content": [
-        "O que muda quando você entende Jesus como Rei?",
-        "O que está ocupando o trono do seu coração hoje?",
-        "O que te impede de entregar esse lugar para Jesus?"
+        "As perguntas são o centro da condução da célula.",
+        "Não tenha pressa para passar por todas.",
+        "Se uma pergunta gerar uma conversa sincera, permaneça nela."
       ]
     },
     {
       "type": "challenge",
       "label": "Desafio da semana",
-      "title": "Reposicionando o trono",
-      "subtitle": "Uma pequena decisão pode mudar tudo.",
+      "title": "Reposicione o trono",
+      "subtitle": "Uma pequena decisão pode revelar quem está governando.",
       "content": [
         "Durante essa semana, pense em uma pequena escolha que precisa corrigir.",
-        "Como você pode reposicionar o trono do seu coração para Jesus?"
+        "Antes de uma decisão importante, pause e pergunte: isso está me levando para mais perto de Jesus ou para mais longe?",
+        "Separe cinco minutos antes de dormir e responda: o que governou meu coração hoje?"
       ]
     },
     {
       "type": "closing",
       "label": "Encerramento",
-      "title": "Ore com o grupo",
-      "subtitle": "Apresente cada pessoa diante de Deus.",
+      "title": "Ore pelo centro do coração",
+      "subtitle": "Feche conduzindo o grupo à entrega.",
       "content": [
-        "Abra para pedidos de oração.",
+        "Abra espaço para pedidos de oração.",
         "Ore por cada pessoa pelo nome.",
-        "Peça para Jesus ocupar novamente o centro do coração."
+        "Peça para Jesus ocupar novamente o centro do coração.",
+        "Encerre lembrando o grupo: todo mundo está seguindo alguma direção. A pergunta é quem está definindo essa direção."
       ]
     }
   ]

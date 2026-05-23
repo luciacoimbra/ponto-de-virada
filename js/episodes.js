@@ -39,6 +39,11 @@ setSeason(season);
   const id = Number(card.dataset.id);
   if (!id) return;
 
+  const ep =
+    AppState.season.episodes.find(e => e.id === id);
+
+  if (ep?.status === 'coming-soon') return;
+
   openEpisode(id);
 });
     updateSeasonCTA();
@@ -59,23 +64,35 @@ function buildEpisodeList() {
   if (!container) return;
 
   container.innerHTML = AppState.season.episodes.map(ep => `
-  <div class="episode-card" data-id="${ep.id}">
+  <div
+    class="episode-card ${ep.status === 'coming-soon' ? 'coming-soon' : ''}"
+    data-id="${ep.id}"
+  >
+
+    ${ep.status === 'coming-soon'
+      ? '<div class="coming-soon-badge">em breve</div>'
+      : ''
+    }
+
     ${isEpisodeCompleted(ep.id)
-  ? '<div class="episode-completed">concluído</div>'
-  : ''}
-      <img
-        src="${ep.img}"
-        class="episode-image"
-        alt="Episódio ${ep.id} — ${ep.title}"
-        loading="lazy"
-      >
-      <div class="episode-card-content">
-        <div class="episode-number">EPISÓDIO ${ep.id}</div>
-        <h3>${ep.title}</h3>
-        <p>${ep.subtitle}</p>
-      </div>
+      ? '<div class="episode-completed">concluído</div>'
+      : ''
+    }
+
+    <img
+      src="${ep.img}"
+      class="episode-image"
+      alt="Episódio ${ep.id} — ${ep.title}"
+      loading="lazy"
+    >
+
+    <div class="episode-card-content">
+      <div class="episode-number">EPISÓDIO ${ep.id}</div>
+      <h3>${ep.title}</h3>
+      <p>${ep.subtitle}</p>
     </div>
-  `).join('');
+  </div>
+`).join('');
 }
 
 /* ══════════════════════════════════════
@@ -223,16 +240,37 @@ function renderScriptureHighlight(scripture) {
 
 function renderBlock(block, index) {
 
+  const subtitle = block.subtitle
+    ? `<p class="timeline-subtitle">${block.subtitle}</p>`
+    : '';
+
   const paragraphs = (block.content || [])
     .map(p => `<p>${p}</p>`)
     .join('');
 
+  const steps = (block.steps || [])
+    .map((step, i) => `
+      <div class="leader-step">
+        <div class="leader-step-number">${i + 1}</div>
+        <div>
+          <h3>${step.title}</h3>
+          <p>${step.text}</p>
+        </div>
+      </div>
+    `)
+    .join('');
+
   const questions = (block.questions || [])
-    .map(q => `<li>${q}</li>`)
+    .map((q, i) => `
+      <div class="question-card">
+        <div class="question-number">Pergunta ${i + 1}</div>
+        <p>${q}</p>
+      </div>
+    `)
     .join('');
 
   return `
-  <section class="timeline-item" data-index="${index}">
+    <section class="timeline-item" data-index="${index}">
 
       <div class="timeline-marker">
         <div class="timeline-dot"></div>
@@ -249,19 +287,13 @@ function renderBlock(block, index) {
           ${block.title || ''}
         </h2>
 
-        <div class="timeline-preview ${index === 0 ? '' : 'line-clamp'}">
+        ${subtitle}
+
+        <div class="timeline-preview">
+          ${steps}
+          ${questions}
           ${paragraphs}
         </div>
-
-        ${questions ? `
-          <div class="discussion-list">
-            <ol>
-              ${questions}
-            </ol>
-          </div>
-        ` : ''}
-
-        <!-- navegação feita pelos botões anterior/próximo -->
 
       </div>
     </section>
@@ -564,23 +596,19 @@ function renderLeaderArea(id) {
   placeholder="Escreva observações, insights e direcionamentos..."
 ></textarea>
 
+<div class="leader-actions">
+  <button
+    class="btn btn-gold leader-save-btn"
+    onclick="saveLeaderNotes(${id})"
+  >
+    salvar notas
+  </button>
+</div>
+
 <div
   id="leader-history-${id}"
   class="leader-history"
 ></div>
-
-<div class="leader-actions">
-
-  <button
-  class="btn btn-gold leader-save-btn"
-  onclick="saveLeaderNotes(${id})"
->
-
-    salvar notas
-
-  </button>
-
-</div>
 
       </div>
 
@@ -619,6 +647,13 @@ function renderLeaderArea(id) {
       </div>
 
 <div class="export-actions">
+
+<button
+  class="btn btn-gold complete-episode-btn"
+  onclick="toggleEpisodeCompleted(${id})"
+>
+  ${isEpisodeCompleted(id) ? 'Episódio concluído ✓' : 'Marcar episódio como concluído'}
+</button>
 
   <button
   class="btn btn-gold export-btn"
@@ -991,6 +1026,14 @@ function exportEpisodeSummary(id) {
 
     </div>
 
+    <div class="share-challenge-label">
+  desafio da semana
+</div>
+
+<div class="share-challenge">
+  ${ep.challenge || ''}
+</div>
+
     <div class="share-section-title">
 
       pedidos de oração
@@ -1163,14 +1206,40 @@ function markBlockAsRead(index) {
     progress[ep.id].lastIndex = index + 1;
   }
 
-  if (progress[ep.id].lastIndex >= ep.blocks.length) {
-
-    progress[ep.id].completed = true;
-  }
-
   Storage.saveProgress(progress);
 
   updateTimelineProgress();
+}
+
+function toggleEpisodeCompleted(id) {
+
+  const progress = Storage.getProgress();
+  const ep = AppState.episode;
+  const totalBlocks = ep?.blocks?.length || 0;
+
+  const isCompleted =
+    !!progress[id]?.completed;
+
+  progress[id] = {
+    completed: !isCompleted,
+    lastIndex: !isCompleted ? totalBlocks : 0
+  };
+
+  Storage.saveProgress(progress);
+
+  updateSeasonCTA();
+  buildEpisodeList();
+
+  const btn =
+    document.querySelector('.complete-episode-btn');
+
+  if (btn) {
+  btn.textContent = !isCompleted
+    ? 'Episódio concluído ✓'
+    : 'Marcar episódio como concluído';
+
+  btn.classList.toggle('completed', !isCompleted);
+}
 }
 
 window.loadSeason = loadSeason;
