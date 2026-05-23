@@ -1758,23 +1758,19 @@ header {
 }
 
 @media (max-width: 768px) {
-
-  .share-summary {
-
-    font-size: 15px;
+  .scripture-highlight {
+    padding: 14px;
   }
 
-  .share-prayer {
-
-    font-size: 15px;
+  .scripture-verse {
+    max-width: 100%;
   }
 
-  .share-modal-content {
-
-    width: 100%;
-
-    padding: 24px 0 40px;
-
+  .verse-text {
+    font-size: 16px;
+    line-height: 1.6;
+    letter-spacing: 0.1px;
+    white-space: normal;
   }
 }
 
@@ -1811,7 +1807,7 @@ header {
 
   max-height: calc(100vh - 160px);
 
-  border-radius: 32px;
+  border-radius: 24px;
 
   overflow: hidden;
 
@@ -1823,10 +1819,17 @@ header {
 
   margin: 0 auto;
 
-  background: #111;
+  background: transparent;
 
   box-shadow:
     0 30px 80px rgba(0,0,0,0.5);
+}
+
+#share-card {
+  border-radius: 24px;
+  overflow: hidden;
+  background: #000;
+  transform: translateZ(0);
 }
 
 .share-bg {
@@ -2114,4 +2117,12 @@ header {
   text-transform: uppercase;
 
   font-weight: 700;
+}
+
+.episode-summary {
+  padding: 20px;
+  font-size: 16px;
+  line-height: 1.6;
+  opacity: 0.85;
+  max-width: 700px;
 }

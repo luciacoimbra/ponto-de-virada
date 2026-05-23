@@ -96,6 +96,15 @@ async function openEpisode(id) {
         </div>
       </div>
     `;
+
+    const summary = ep.summary
+  ? `
+    <section class="episode-summary">
+      <p>${ep.summary}</p>
+    </section>
+  `
+  : '';
+  
     const scripture =
       renderScriptureHighlight(
         ep.scriptureHighlight
@@ -110,6 +119,7 @@ async function openEpisode(id) {
   'episodeContent'
 ).innerHTML =
   hero +
+  summary +
   scripture +
   blocks +
   renderLeaderArea(ep.id);
@@ -189,6 +199,10 @@ function renderBlock(block, index) {
     .map(p => `<p>${p}</p>`)
     .join('');
 
+  const questions = (block.questions || [])
+    .map(q => `<li>${q}</li>`)
+    .join('');
+
   let state = 'future';
 
   if (index === 0) {
@@ -196,18 +210,11 @@ function renderBlock(block, index) {
   }
 
   return `
-
-    <section
-      class="timeline-item ${state}"
-      data-index="${index}"
-    >
+    <section class="timeline-item ${state}" data-index="${index}">
 
       <div class="timeline-marker">
-
         <div class="timeline-dot"></div>
-
         <div class="timeline-line"></div>
-
       </div>
 
       <div class="timeline-content">
@@ -221,22 +228,22 @@ function renderBlock(block, index) {
         </h2>
 
         <div class="timeline-preview line-clamp">
-
           ${paragraphs}
-
         </div>
 
-        <button
-          class="timeline-more"
-          onclick="toggleTimeline(this)"
-        >
+        ${questions ? `
+          <div class="discussion-list">
+            <ol>
+              ${questions}
+            </ol>
+          </div>
+        ` : ''}
 
+        <button class="timeline-more" onclick="toggleTimeline(this)">
           mais
-
         </button>
 
       </div>
-
     </section>
   `;
 }
@@ -1013,37 +1020,20 @@ function exportEpisodeSummary(id) {
 }
 
 async function downloadShareCard() {
-
-  const card =
-    document.getElementById(
-      'share-card'
-    );
-
+  const card = document.getElementById('share-card');
   if (!card) return;
 
-  const canvas =
-  await html2canvas(card, {
-
-    scale: 3,
-
+  const canvas = await html2canvas(card, {
+    scale: window.devicePixelRatio || 2,
     useCORS: true,
-
-    backgroundColor: null,
-
+    backgroundColor: '#000',
     windowWidth: card.scrollWidth,
-
     windowHeight: card.scrollHeight
   });
 
-  const link =
-    document.createElement('a');
-
-  link.download =
-    'celula.png';
-
-  link.href =
-    canvas.toDataURL('image/png');
-
+  const link = document.createElement('a');
+  link.download = 'celula.png';
+  link.href = canvas.toDataURL('image/png');
   link.click();
 }
 
@@ -1058,62 +1048,34 @@ function closeShareModal() {
 }
 
 function updateTimelineProgress() {
-
-  const items =
-    document.querySelectorAll(
-      '.timeline-item'
-    );
-
-  const ep =
-    window.currentEpisode;
+  const items = document.querySelectorAll('.timeline-item');
+  const ep = window.currentEpisode;
 
   if (!ep) return;
 
-  const storageKey =
-    `episode-progress-${ep.id}`;
+  const completed = JSON.parse(
+    localStorage.getItem('completed-episodes') || '[]'
+  );
 
-  const completed =
-    JSON.parse(
-      localStorage.getItem(storageKey)
-      || '[]'
-    );
+  const progress = JSON.parse(
+    localStorage.getItem(`episode-progress-${ep.id}`) || '[]'
+  );
 
-  items.forEach(item => {
-
+  items.forEach((item) => {
     item.classList.remove(
       'is-future',
       'is-current',
       'is-completed'
     );
 
-    const index =
-      Number(item.dataset.index);
+    const index = Number(item.dataset.index);
 
-    if (completed.includes(index)) {
-
-      item.classList.add(
-        'is-completed'
-      );
-
+    if (progress.includes(index)) {
+      item.classList.add('is-completed');
+    } else if (index === progress.length) {
+      item.classList.add('is-current');
     } else {
-
-      const firstIncomplete =
-        items[
-          completed.length
-        ];
-
-      if (item === firstIncomplete) {
-
-        item.classList.add(
-          'is-current'
-        );
-
-      } else {
-
-        item.classList.add(
-          'is-future'
-        );
-      }
+      item.classList.add('is-future');
     }
   });
 }
@@ -1193,4 +1155,20 @@ function updateSeasonCTA() {
   button.textContent = hasProgress
     ? 'próximo episódio'
     : 'entrar na temporada';
+}
+
+function markBlockAsRead(index) {
+  const ep = window.currentEpisode;
+  if (!ep) return;
+
+  const key = `episode-progress-${ep.id}`;
+
+  const progress = JSON.parse(localStorage.getItem(key) || '[]');
+
+  if (!progress.includes(index)) {
+    progress.push(index);
+    localStorage.setItem(key, JSON.stringify(progress));
+  }
+
+  updateTimelineProgress();
 }
