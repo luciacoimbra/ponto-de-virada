@@ -1,72 +1,139 @@
 {
   "id": 1,
-
-  "title": "Quem está sentado no trono?",
-
+  "title": "Quem Está Sentado no Trono?",
   "subtitle": "Jesus é Rei.",
-
   "summary": "Jesus não veio apenas como salvador, ele veio como Rei. E essa realeza exige uma resposta concreta: quem ocupa o trono do seu coração?",
-
   "img": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1400&auto=format&fit=crop",
-
   "scriptureHighlight": {
-
     "reference": "Marcos 1:1–15",
-
     "highlightVerse": "Marcos 1:15",
-
     "verse": "O Reino de Deus está próximo. Arrependam-se e creiam nas boas notícias.",
-
     "fullText": "1 Início do evangelho de Jesus Cristo, o Filho de Deus.\n\n2 Conforme está escrito no profeta Isaías: 'Eis que envio o meu mensageiro à tua frente...'\n\n3 Voz do que clama no deserto: 'Preparem o caminho do Senhor.'\n\n4 João apareceu no deserto pregando batismo de arrependimento.\n\n5 Toda a região da Judeia ia até ele.\n\n6 João vestia roupas de pelos de camelo.\n\n7 E pregava: 'Depois de mim vem alguém mais poderoso do que eu.'\n\n8 'Eu os batizei com água, mas ele os batizará com o Espírito Santo.'\n\n9 Naqueles dias Jesus veio de Nazaré da Galileia.\n\n10 Ao sair da água, viu os céus se abrindo.\n\n11 E uma voz dos céus disse: 'Tu és meu Filho amado.'\n\n12 O Espírito o levou ao deserto.\n\n13 E ali foi tentado por Satanás.\n\n14 Depois que João foi preso, Jesus foi para a Galileia pregando o evangelho.\n\n15 'O tempo está cumprido. O Reino de Deus está próximo. Arrependam-se e creiam nas boas notícias.'"
   },
-
   "blocks": [
-
     {
       "type": "opening",
       "label": "Ponto de partida",
       "title": "Um grau de diferença muda o destino?",
+      "subtitle": "Pequenas direções criam grandes destinos.",
       "content": [
-        "Se um avião decola de Los Angeles em direção a Nova York, o piloto precisa definir uma trajetória específica para pousar onde pretende. Se ele estiver desviado por apenas um grau, não vai acabar em Nova York — vai acabar em Washington, D.C. É fácil achar que pequenas decisões e pequenos hábitos não mudam muita coisa. Mas o que vale para um padrão de voo vale ainda mais para uma vida inteira. Pequenas escolhas se amplificam com o tempo — para o bem ou para o mal."
+        "Se um avião decola de Los Angeles em direção a Nova York, o piloto precisa definir uma trajetória específica para pousar onde pretende.",
+        "Se ele estiver desviado por apenas um grau, não vai acabar em Nova York — vai acabar em Washington, D.C.",
+        "É fácil achar que pequenas decisões e pequenos hábitos não mudam muita coisa.",
+        "Mas pequenas escolhas se amplificam com o tempo — para o bem ou para o mal."
       ]
     },
-
+    {
+      "type": "context",
+      "label": "Cenário",
+      "title": "O Ungido",
+      "subtitle": "Quem Israel esperava quando ouvia Messias?",
+      "content": [
+        "Messias é uma palavra hebraica que significa ungido.",
+        "No Antigo Testamento, o ungido era o Rei de Israel.",
+        "No Novo Testamento, a mesma ideia aparece em grego como Cristo.",
+        "Quando Marcos apresenta Jesus como Messias, está dizendo: este é o Rei do universo."
+      ]
+    },
+    {
+      "type": "context",
+      "label": "Cenário",
+      "title": "Filho do Rei",
+      "subtitle": "Por que chamar Jesus de Filho de Deus era uma provocação?",
+      "content": [
+        "Quando ouvimos Filho de Deus, pensamos na divindade de Jesus.",
+        "Mas em Israel antigo, esse título também era um título do Rei.",
+        "Na Roma antiga, chamar outra pessoa de Filho de Deus era uma afronta direta ao imperador."
+      ]
+    },
+    {
+      "type": "context",
+      "label": "Cenário",
+      "title": "Boa notícia",
+      "subtitle": "Por que evangelho era uma palavra política?",
+      "content": [
+        "Hoje evangelho é uma palavra religiosa.",
+        "No mundo antigo, era o anúncio de que um novo rei havia assumido o trono.",
+        "Quando Marcos escreve sobre Jesus, ele está anunciando um novo Rei."
+      ]
+    },
     {
       "type": "reflection",
-      "label": "Cenário",
-      "title": "O que estava em jogo quando Marcos escreveu o versículo 1?",
+      "label": "Mergulho",
+      "title": "Pedra em movimento",
+      "subtitle": "Como Marcos apresenta Jesus logo no começo?",
       "content": [
-        "Pequenas decisões não permanecem pequenas. Elas se ampliam com o tempo e moldam a direção da vida. Assim como um avião que desvia apenas um grau pode chegar a um destino completamente diferente, a vida também é construída por escolhas diárias que parecem simples, mas definem o resultado final. É comum subestimar hábitos pequenos, mas eles se acumulam e produzem frutos ao longo do tempo, seja de forma positiva ou negativa. Em diferentes momentos da vida, existe uma tentativa de ajustar o curso, mudando hábitos de rotina, comportamento e relacionamentos. Ainda assim, existe uma decisão central que influencia todas as outras: o modo como a vida se relaciona com a Palavra de Deus. Um hábito diário de leitura e prática da Palavra direciona a vida para um caminho de entrega, humildade e generosidade. Já a negligência constante dela leva a uma direção marcada por egoísmo, orgulho e afastamento. Esse processo também afeta o interior da pessoa. O que é cultivado diariamente pode enfraquecer o que é destrutivo ou fortalecer aquilo que prende a vida ao orgulho. O texto também apresenta Jesus como Messias e Filho de Deus, conectando essa identidade à ideia de realeza. Isso coloca a mensagem em um nível de governo, não apenas de crença. A linguagem de “boa notícia” no contexto original era associada a anúncios de reis e autoridades. Aplicada a Jesus, essa linguagem o coloca como o Rei verdadeiro, acima de qualquer outro centro de poder. Isso leva à ideia de que existe um “trono”, que representa decisões, prioridades e direção de vida. Esse trono não é neutro. Ele é ocupado diariamente por aquilo que governa escolhas e desejos. A questão central é quem ocupa esse lugar de governo. Arrependimento e fé aparecem como uma mudança de direção, reposicionando a vida sob o governo de Jesus."
+        "Marcos é um evangelho cheio de ação.",
+        "Jesus aparece como uma força imparável, caminhando em direção à sua missão.",
+        "A ideia de realeza aparece desde os primeiros versículos."
       ]
     },
-
+    {
+      "type": "reflection",
+      "label": "Mergulho",
+      "title": "Concorrente",
+      "subtitle": "Jesus veio como professor ou como Rei?",
+      "content": [
+        "Jesus não era apenas um professor.",
+        "Não era apenas um curador.",
+        "Ele veio como Rei.",
+        "O Reino de Deus chegou perto."
+      ]
+    },
+    {
+      "type": "reflection",
+      "label": "Mergulho",
+      "title": "O trono",
+      "subtitle": "Seu coração também possui um trono.",
+      "content": [
+        "Tronos são feitos para um único assento.",
+        "Jesus reivindica autoridade sobre tudo.",
+        "Existe um trono no seu coração.",
+        "A questão é: quem está sentado nele?"
+      ]
+    },
+    {
+      "type": "leader",
+      "label": "Guia do líder",
+      "title": "Conduzindo a conversa",
+      "subtitle": "Como transformar conteúdo em conversa real?",
+      "content": [
+        "Abra com uma oração.",
+        "Conte a história do avião.",
+        "Leia Marcos 1:1–15 com o grupo.",
+        "Apresente cada bloco e faça perguntas abertas."
+      ]
+    },
     {
       "type": "discussion",
-      "label": "Mergulho",
-      "title": "Jesus é Rei — e o que isso exige de você?",
+      "label": "Discussão",
+      "title": "Perguntas para o grupo",
+      "subtitle": "Converse com sinceridade.",
       "content": [
-        "Se um avião decola de Los Angeles em direção a Nova York, o piloto precisa definir uma trajetória específica para pousar onde pretende. Se o piloto estiver desviado por apenas um grau, ele não vai acabar em Nova York, vai acabar em Washington, D.C. É fácil pensar que pequenas decisões e pequenos hábitos não geram grandes mudanças em sua vida. Mas o que é verdade para um padrão de voo é ainda mais verdade para uma vida inteira. Pequenas escolhas se amplificam ao longo do tempo, para o bem ou para o mal. Você já viveu ou conhece alguma história em que uma pequena decisão mudou completamente o resultado?"
+        "O que muda quando você entende Jesus como Rei?",
+        "O que está ocupando o trono do seu coração hoje?",
+        "O que te impede de entregar esse lugar para Jesus?"
       ]
     },
-
     {
-      "type": "application",
-      "label": "Guia do líder",
-      "title": "Como transformar esse conteúdo numa conversa real?",
-      "content": [
-        "1. O que está sentado no trono do seu coração agora?",
-        "2. Que pecado enraizado você reconhece?",
-        "3. O que te impede de dar a Jesus esse direito hoje?"
-      ]
-    },
-
-    {
-      "type": "prayer",
+      "type": "challenge",
       "label": "Desafio da semana",
-      "title": "Quem está no trono?",
+      "title": "Reposicionando o trono",
+      "subtitle": "Uma pequena decisão pode mudar tudo.",
       "content": [
         "Durante essa semana, pense em uma pequena escolha que precisa corrigir.",
-        "Como você vai reposicionar o trono do seu coração para Jesus?"
+        "Como você pode reposicionar o trono do seu coração para Jesus?"
+      ]
+    },
+    {
+      "type": "closing",
+      "label": "Encerramento",
+      "title": "Ore com o grupo",
+      "subtitle": "Apresente cada pessoa diante de Deus.",
+      "content": [
+        "Abra para pedidos de oração.",
+        "Ore por cada pessoa pelo nome.",
+        "Peça para Jesus ocupar novamente o centro do coração."
       ]
     }
   ]

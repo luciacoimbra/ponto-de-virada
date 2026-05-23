@@ -3,7 +3,11 @@
 const AppState = {
   season: null,
   episode: null,
-  scripture: null
+  scripture: null,
+
+  timeline: {
+    current: 0
+  }
 };
 
 function setSeason(season) {
@@ -100,8 +104,6 @@ async function openEpisode(id) {
     const ep = await response.json();
     setEpisode(ep);
 
-    markEpisodeAsCompleted(id);
-
     const hero = `
       <div class="episode-hero"
            style="background-image:url('${ep.img}')">
@@ -147,10 +149,8 @@ async function openEpisode(id) {
   summary +
   scripture +
   blocks +
+  renderEpisodeNavigation() +
   renderLeaderArea(ep.id);
-
-showOnly('episode-view');
-updateTimelineProgress();
 
 setTimeout(() => {
 
@@ -161,6 +161,10 @@ setTimeout(() => {
 }, 0);
 
     showOnly('episode-view');
+
+    AppState.timeline.current = 0;
+
+    updateTimelineStates();
 
   } catch(error) {
 
@@ -227,14 +231,8 @@ function renderBlock(block, index) {
     .map(q => `<li>${q}</li>`)
     .join('');
 
-  let state = 'future';
-
-  if (index === 0) {
-    state = 'current';
-  }
-
   return `
-    <section class="timeline-item ${state}" data-index="${index}">
+  <section class="timeline-item" data-index="${index}">
 
       <div class="timeline-marker">
         <div class="timeline-dot"></div>
@@ -251,7 +249,7 @@ function renderBlock(block, index) {
           ${block.title || ''}
         </h2>
 
-        <div class="timeline-preview line-clamp">
+        <div class="timeline-preview ${index === 0 ? '' : 'line-clamp'}">
           ${paragraphs}
         </div>
 
@@ -263,9 +261,7 @@ function renderBlock(block, index) {
           </div>
         ` : ''}
 
-        <button class="timeline-more">
-          mais
-        </button>
+        <!-- navegação feita pelos botões anterior/próximo -->
 
       </div>
     </section>
@@ -315,10 +311,8 @@ function getLoadedEpisodes() {
 }
 
 function isEpisodeCompleted(id) {
-
-  const progress = Storage.getProgress(id);
-
-  return progress.completed;
+  const progress = Storage.getProgress();
+  return !!progress[id]?.completed;
 }
 
 function updateSeasonCTA() {
@@ -416,6 +410,138 @@ function closeScriptureModal() {
     document.querySelector('.scripture-modal');
 
   if (modal) modal.remove();
+}
+
+function goToNextBlock() {
+
+  const items =
+    document.querySelectorAll('.timeline-item');
+
+  if (!items.length) return;
+
+  const isLast =
+    AppState.timeline.current === items.length - 1;
+
+  if (isLast) {
+    const leaderArea =
+      document.querySelector('.leader-tools');
+
+    if (leaderArea) {
+      leaderArea.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+
+    return;
+  }
+
+  toggleTimeline(AppState.timeline.current + 1);
+}
+
+function goToPreviousBlock() {
+
+  const prev =
+    Math.max(
+      AppState.timeline.current - 1,
+      0
+    );
+
+  toggleTimeline(prev);
+}
+
+function updateTimelineStates() {
+
+  const items =
+    document.querySelectorAll('.timeline-item');
+
+  items.forEach((item, index) => {
+
+    item.classList.remove(
+      'is-current',
+      'is-completed',
+      'is-future'
+    );
+
+    if (index === AppState.timeline.current) {
+      item.classList.add('is-current');
+      item.classList.remove('hidden');
+    } else {
+      item.classList.add(
+        index < AppState.timeline.current
+          ? 'is-completed'
+          : 'is-future'
+      );
+      item.classList.add('hidden');
+    }
+
+  });
+}
+
+function renderEpisodeNavigation() {
+
+  return `
+
+    <div class="episode-navigation">
+
+      <button
+        class="episode-nav-btn"
+        onclick="goToPreviousBlock()"
+      >
+
+        anterior
+
+      </button>
+
+      <div class="episode-progress">
+
+        <div
+          class="episode-progress-bar"
+          id="episode-progress-bar"
+        ></div>
+
+      </div>
+
+      <button
+        class="episode-nav-btn"
+        onclick="goToNextBlock()"
+      >
+
+        próximo
+
+      </button>
+
+    </div>
+
+  `;
+}
+
+function updateEpisodeProgress() {
+
+  const items =
+    document.querySelectorAll('.timeline-item');
+
+  const progress =
+    document.getElementById('episode-progress-bar');
+
+  const nextBtn =
+    document.querySelector('.episode-navigation .episode-nav-btn:last-child');
+
+  if (!progress || !items.length) return;
+
+  const percentage =
+    ((AppState.timeline.current + 1) / items.length) * 100;
+
+  progress.style.width =
+    `${percentage}%`;
+
+  if (nextBtn) {
+    const isLast =
+      AppState.timeline.current === items.length - 1;
+
+    nextBtn.textContent =
+      isLast ? 'fechar' : 'próximo';
+  }
 }
 
 function renderLeaderArea(id) {
@@ -748,6 +874,36 @@ function loadLeaderHistory(id) {
   `;
 }
 
+function toggleTimeline(index) {
+
+  const items =
+    document.querySelectorAll('.timeline-item');
+
+  if (!items.length) return;
+
+  AppState.timeline.current =
+    Math.max(
+      0,
+      Math.min(index, items.length - 1)
+    );
+
+  updateTimelineStates();
+
+  updateEpisodeProgress();
+
+  const currentItem =
+    items[AppState.timeline.current];
+
+  if (currentItem) {
+    setTimeout(() => {
+      currentItem.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }, 120);
+  }
+}
+
 function exportEpisodeSummary(id) {
 
   const ep =
@@ -899,21 +1055,27 @@ function closeShareModal() {
 }
 
 function updateTimelineProgress() {
-  const items = document.querySelectorAll('.timeline-item');
 
-  const ep = window.AppState?.episode;
+  const items =
+    document.querySelectorAll('.timeline-item');
+
+  const ep = AppState.episode;
 
   if (!ep) return;
 
-  const progress = Storage.getProgress();
+  const progress =
+    Storage.getProgress();
 
-  const episodeData = progress[ep.id];
+  const episodeData =
+    progress[ep.id] || {};
 
-  const lastIndex = episodeData?.lastIndex ?? -1;
+  const lastIndex =
+    episodeData.lastIndex || 0;
 
   items.forEach((item) => {
 
-    const index = Number(item.dataset.index);
+    const index =
+      Number(item.dataset.index);
 
     item.classList.remove(
       'is-future',
@@ -921,7 +1083,13 @@ function updateTimelineProgress() {
       'is-completed'
     );
 
-    if (episodeData?.completed || index < lastIndex - 1) {
+    if (episodeData.completed) {
+
+      item.classList.add('is-completed');
+      return;
+    }
+
+    if (index < lastIndex - 1) {
 
       item.classList.add('is-completed');
 
@@ -937,38 +1105,23 @@ function updateTimelineProgress() {
   });
 }
 
-function toggleTimeline(button) {
-
-  const preview =
-    button.parentElement.querySelector(
-      '.timeline-preview'
-    );
-
-  if (!preview) return;
-
-  const expanded =
-    !preview.classList.contains('line-clamp');
-
-  if (expanded) {
-
-    preview.classList.add('line-clamp');
-
-    button.textContent = 'mais';
-
-  } else {
-
-    preview.classList.remove('line-clamp');
-
-    button.textContent = 'menos';
-  }
-}
-
 function markEpisodeAsCompleted(id) {
 
-  Storage.markEpisodeCompleted(id, {
-  completed: true,
-  lastIndex: Infinity
-});
+  const progress =
+    Storage.getProgress();
+
+  const ep =
+    AppState.episode;
+
+  const totalBlocks =
+    ep?.blocks?.length || 0;
+
+  progress[id] = {
+    completed: true,
+    lastIndex: totalBlocks
+  };
+
+  Storage.saveProgress(progress);
 
   updateSeasonCTA();
 }
@@ -989,13 +1142,37 @@ const completed = Object.keys(progress)
   );
 }
 
+function markBlockAsRead(index) {
+
+  const ep = AppState.episode;
+
+  if (!ep) return;
+
+  const progress = Storage.getProgress();
+
+  if (!progress[ep.id]) {
+
+    progress[ep.id] = {
+      completed: false,
+      lastIndex: 0
+    };
+  }
+
+  if (index + 1 > progress[ep.id].lastIndex) {
+
+    progress[ep.id].lastIndex = index + 1;
+  }
+
+  if (progress[ep.id].lastIndex >= ep.blocks.length) {
+
+    progress[ep.id].completed = true;
+  }
+
+  Storage.saveProgress(progress);
+
+  updateTimelineProgress();
+}
+
 window.loadSeason = loadSeason;
 window.openEpisode = openEpisode;
 window.updateSeasonCTA = updateSeasonCTA;
-
-document.addEventListener('click', (e) => {
-  const btn = e.target.closest('.timeline-more');
-  if (!btn) return;
-
-  toggleTimeline(btn);
-});

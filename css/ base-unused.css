@@ -209,6 +209,84 @@ h3 { font-size: var(--text-lg); }
   overflow: hidden;
 }
 
+/* ─────────────────────────────
+   TIMELINE STATES
+───────────────────────────── */
+
+.timeline-item {
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+
+/* FUTURO */
+
+.timeline-item.is-future {
+  opacity: 0.45;
+}
+
+.timeline-item.is-future .timeline-title,
+.timeline-item.is-future .timeline-preview {
+  color: #888;
+}
+
+/* ATUAL */
+
+.timeline-item.is-current {
+
+  opacity: 1;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.04),
+      rgba(255,255,255,0.01)
+    );
+
+  border-radius: 20px;
+
+  padding-left: 12px;
+
+  transform: scale(1.01);
+}
+
+.timeline-item.is-current .timeline-dot {
+  background: #ffffff;
+
+  box-shadow:
+    0 0 12px rgba(255,255,255,0.6);
+}
+
+.timeline-item.is-current .timeline-title {
+  color: #fff;
+}
+
+.timeline-item.is-current .timeline-preview {
+  color: rgba(255,255,255,0.88);
+}
+
+/* CONCLUÍDO */
+
+.timeline-item.is-completed {
+  opacity: 0.9;
+}
+
+.timeline-item.is-completed .timeline-dot {
+  background: #c8a96b;
+
+  box-shadow:
+    0 0 10px rgba(200,169,107,0.45);
+}
+
+.timeline-item.is-completed .timeline-line {
+  background: rgba(200,169,107,0.35);
+}
+
+.timeline-item.is-completed .timeline-title {
+  color: #f5e6c8;
+}
+
 
 /* =========================================
    8. SCRIPTURE SYSTEM
