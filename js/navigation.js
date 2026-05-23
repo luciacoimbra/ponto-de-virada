@@ -1,4 +1,6 @@
-/* navigation.js — views, modais, intro */
+/* ══════════════════════════════════════
+   NAVIGATION (TELAS)
+══════════════════════════════════════ */
 
 const VIEWS = ['home-view', 'season-view', 'episode-view'];
 
@@ -9,36 +11,49 @@ function showOnly(id) {
   });
 }
 
+function goHome() {
+  showOnly('home-view');
+}
+
+function backToSeason() {
+  showOnly('season-view');
+}
+
 function openSeason(seasonId = 'marcos') {
   loadSeason(`data/seasons/${seasonId}/meta.json`);
 }
 
-function goHome()       { showOnly('home-view'); }
-function backToSeason() { showOnly('season-view'); }
+/* ══════════════════════════════════════
+   MODALS
+══════════════════════════════════════ */
 
-/* ── Manifesto ── */
-function openManifesto()  { document.getElementById('manifestoPopup').classList.add('open'); }
-function closeManifesto() { document.getElementById('manifestoPopup').classList.remove('open'); }
+function openManifesto() {
+  document.getElementById('manifestoPopup').classList.add('open');
+}
 
-/* ── Search ── */
+function closeManifesto() {
+  document.getElementById('manifestoPopup').classList.remove('open');
+}
+
 function openSearch() {
   document.getElementById('searchModal').classList.add('open');
   document.getElementById('searchInput').focus();
 }
+
 function closeSearch() {
   document.getElementById('searchModal').classList.remove('open');
   document.getElementById('results').innerHTML = '';
   document.getElementById('searchInput').value = '';
 }
 
-/* ── Intro expand ── */
-function toggleIntro() {
-  const el  = document.getElementById('seasonIntro');
-  const btn = document.getElementById('expandBtn');
-  btn.textContent = el.classList.toggle('collapsed') ? '...mais' : 'mostrar menos';
+function closeScripture() {
+  document.getElementById('scriptureModal').classList.remove('open');
 }
 
-/* ── Backdrop & ESC ── */
+/* ══════════════════════════════════════
+   UI BEHAVIOR (GLOBAL EVENTS)
+══════════════════════════════════════ */
+
 document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('manifestoPopup').addEventListener('click', function(e) {
@@ -54,11 +69,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') { closeManifesto(); closeSearch(); closeScripture(); }
+    if (e.key === 'Escape') {
+      closeManifesto();
+      closeSearch();
+      closeScripture();
+    }
   });
 
-});
-
-document.addEventListener('DOMContentLoaded', () => {
   showOnly('home-view');
 });

@@ -1,6 +1,22 @@
 /* episodes.js — carrega temporada via fetch e renderiza episódios */
 
-let currentSeason = null;
+const AppState = {
+  season: null,
+  episode: null,
+  scripture: null
+};
+
+function setSeason(season) {
+  AppState.season = season;
+}
+
+function setEpisode(episode) {
+  AppState.episode = episode;
+}
+
+function setScripture(scripture) {
+  AppState.scripture = scripture;
+}
 
 /* ══════════════════════════════════════
    LOAD SEASON
@@ -9,8 +25,18 @@ async function loadSeason(file) {
   try {
     const res = await fetch(file);
     if (!res.ok) throw new Error('Arquivo não encontrado: ' + file);
-    currentSeason = await res.json();
+    const season = await res.json();
+setSeason(season);
     buildEpisodeList();
+    document.addEventListener('click', (e) => {
+  const card = e.target.closest('.episode-card');
+  if (!card) return;
+
+  const id = Number(card.dataset.id);
+  if (!id) return;
+
+  openEpisode(id);
+});
     updateSeasonCTA();
     showOnly('season-view');
   } catch (err) {
@@ -23,13 +49,13 @@ async function loadSeason(file) {
    BUILD EPISODE LIST (season view)
 ══════════════════════════════════════ */
 function buildEpisodeList() {
-  if (!currentSeason) return;
+  if (!AppState.season) return;
 
   const container = document.getElementById('episodeList');
   if (!container) return;
 
-  container.innerHTML = currentSeason.episodes.map(ep => `
-    <div class="episode-card" onclick="openEpisode(${ep.id})">
+  container.innerHTML = AppState.season.episodes.map(ep => `
+  <div class="episode-card" data-id="${ep.id}">
     ${isEpisodeCompleted(ep.id)
   ? '<div class="episode-completed">concluído</div>'
   : ''}
@@ -53,10 +79,10 @@ function buildEpisodeList() {
 ══════════════════════════════════════ */
 async function openEpisode(id) {
 
-  if (!currentSeason) return;
+  if (!AppState.season) return;
 
   const epMeta =
-    currentSeason.episodes.find(e => e.id === id);
+    AppState.season.episodes.find(e => e.id === id);
 
   if (!epMeta) {
     alert('Episódio não encontrado');
@@ -72,8 +98,7 @@ async function openEpisode(id) {
     }
 
     const ep = await response.json();
-    window.currentEpisode = ep;
-    window.currentSeason = currentSeason;
+    setEpisode(ep);
 
     markEpisodeAsCompleted(id);
 
@@ -153,8 +178,7 @@ function renderScriptureHighlight(scripture) {
 
   if (!scripture) return '';
 
-  window.currentScripture =
-  scripture;
+  AppState.scripture = scripture;
 
   return `
 
@@ -239,83 +263,13 @@ function renderBlock(block, index) {
           </div>
         ` : ''}
 
-        <button class="timeline-more" onclick="toggleTimeline(this)">
+        <button class="timeline-more">
           mais
         </button>
 
       </div>
     </section>
   `;
-}
-
-function renderBlockContent(block) {
-  let html = '';
-
-  /* ── Texto em parágrafos ── */
-  if (block.content && block.content.length > 0) {
-    html += block.content.map(p => `<p>${p}</p>`).join('');
-  }
-
-  /* ── Passagem bíblica ── */
-  if (block.scripture) {
-    html += `
-      <div class="scripture-highlight">${block.scripture.highlight}</div>
-      <button class="scripture-btn" onclick="openScripture(this)" 
-        data-ref="${escAttr(block.scripture.reference)}"
-        data-text="${escAttr(block.scripture.full_text)}">
-        Ler passagem completa — ${block.scripture.reference}
-      </button>
-    `;
-  }
-
-  /* ── Perguntas de discussão ── */
-  if (block.questions && block.questions.length > 0) {
-    html += '<ol class="discussion-list">' +
-      block.questions.map(q => `<li>${q}</li>`).join('') +
-      '</ol>';
-  }
-
-  /* ── Playlist ── */
-  if (block.playlist && block.playlist.length > 0) {
-    html += '<div class="playlist-list">' +
-      block.playlist.map(t => `
-        <div class="playlist-item">
-          <div class="playlist-dot"></div>
-          <div>
-            <span class="playlist-title">${t.title}</span>
-            <span class="playlist-artist"> — ${t.artist}</span>
-          </div>
-        </div>
-      `).join('') +
-      '</div>';
-  }
-
-  /* ── Quero ir Além ── */
-  if (block.beyond) {
-    html += `
-      <div class="beyond-grid">
-        <div class="beyond-item">
-          <div class="beyond-label">Leia também</div>
-          <p>${block.beyond.reading}</p>
-        </div>
-        <div class="beyond-item">
-          <div class="beyond-label">Para refletir</div>
-          <p>${block.beyond.reflection}</p>
-        </div>
-        <div class="beyond-item">
-          <div class="beyond-label">Desafio</div>
-          <p>${block.beyond.challenge}</p>
-        </div>
-      </div>
-    `;
-  }
-
-  /* ── Reflexão Final ── */
-  if (block.closing) {
-    html += `<p class="closing-text">${block.closing}</p>`;
-  }
-
-  return html;
 }
 
 /* ══════════════════════════════════════
@@ -357,134 +311,60 @@ function escAttr(str) {
    SEARCH SUPPORT — expõe dados ao search.js
 ══════════════════════════════════════ */
 function getLoadedEpisodes() {
-  return currentSeason ? currentSeason.episodes : [];
+  return AppState.season ? AppState.season.episodes : [];
 }
 
 function isEpisodeCompleted(id) {
 
-  const completed =
-    JSON.parse(
-      localStorage.getItem(
-        'completed-episodes'
-      ) || '[]'
-    );
+  const progress = Storage.getProgress(id);
 
-  return completed.includes(id);
-}
-
-function getNextEpisode() {
-
-  const completed = JSON.parse(
-    localStorage.getItem(
-      'completed-episodes'
-    ) || '[]'
-  );
-
-  const episodes =
-    getLoadedEpisodes();
-
-  return episodes.find(
-    ep => !completed.includes(ep.id)
-  );
+  return progress.completed;
 }
 
 function updateSeasonCTA() {
-
-  const button =
-    document.getElementById(
-      'seasonCTA'
-    );
-
+  const button = document.getElementById('seasonCTA');
   if (!button) return;
 
-  const completed =
-    JSON.parse(
-      localStorage.getItem(
-        'completed-episodes'
-      ) || '[]'
-    );
+  const progress = Storage.getProgress();
 
-  if (completed.length > 0) {
+  const hasProgress = Object.keys(progress)
+    .some(id => progress[id]?.completed);
 
-    button.textContent =
-      'próximo episódio';
-
-  } else {
-
-    button.textContent =
-      'começar temporada';
-  }
+  button.textContent = hasProgress
+    ? 'próximo episódio'
+    : 'entrar na temporada';
 }
-
-document.addEventListener(
-  'DOMContentLoaded',
-  () => {
-
-    updateSeasonCTA();
-
-  }
-);
 
 function saveEpisodeProgress(index) {
 
-  const epId =
-    window.currentEpisode?.id;
+  const ep = window.AppState?.episode;
+  if (!ep) return;
 
-  if (!epId) return;
+  const progress = Storage.getProgress();
 
-  const saved = JSON.parse(
-    localStorage.getItem('episode-progress') || '{}'
-  );
-
-  saved[epId] = index + 1;
-
-  localStorage.setItem(
-    'episode-progress',
-    JSON.stringify(saved)
-  );
-
-  checkEpisodeCompleted();
-}
-
-function checkEpisodeCompleted() {
-
-  const epId =
-    window.currentEpisode?.id;
-
-  if (!epId) return;
-
-  const totalBlocks =
-    window.currentEpisode.blocks.length;
-
-  const saved = JSON.parse(
-    localStorage.getItem('episode-progress') || '{}'
-  );
-
-  const progress =
-    saved[epId] || 0;
-
-  if (progress >= totalBlocks) {
-
-    const completed = JSON.parse(
-      localStorage.getItem('completed-episodes') || '[]'
-    );
-
-    if (!completed.includes(epId)) {
-
-      completed.push(epId);
-
-      localStorage.setItem(
-        'completed-episodes',
-        JSON.stringify(completed)
-      );
-    }
+  if (!progress[ep.id]) {
+    progress[ep.id] = {
+      completed: false,
+      lastIndex: 0
+    };
   }
+
+  progress[ep.id].lastIndex = index + 1;
+
+  const total = ep.blocks?.length || 0;
+
+  if (progress[ep.id].lastIndex >= total) {
+    progress[ep.id].completed = true;
+  }
+
+  Storage.saveProgress(progress);
+
+  updateTimelineProgress();
 }
 
 function openScriptureModal() {
 
-  const scripture =
-    window.currentScripture;
+  const scripture = AppState.scripture;
 
   if (!scripture) return;
 
@@ -673,22 +553,14 @@ function saveLeaderNotes(id) {
 
   if (!value) return;
 
-  const notes =
-    JSON.parse(
-      localStorage.getItem(
-        `leader-notes-history-${id}`
-      ) || '[]'
-    );
+  const notes = Storage.getNotes(id);
 
   notes.unshift({
     text: value,
     date: new Date().toLocaleString()
   });
 
-  localStorage.setItem(
-    `leader-notes-history-${id}`,
-    JSON.stringify(notes)
-  );
+  Storage.saveNotes(id, notes);
 
   textarea.value = '';
 
@@ -743,19 +615,11 @@ function addPrayer(id) {
 
   if (!input.value.trim()) return;
 
-  const prayers =
-    JSON.parse(
-      localStorage.getItem(
-        `prayers-${id}`
-      ) || '[]'
-    );
+  const prayers = Storage.getPrayers(id);
 
-  prayers.push(input.value);
+prayers.push(input.value);
 
-  localStorage.setItem(
-    `prayers-${id}`,
-    JSON.stringify(prayers)
-  );
+Storage.savePrayers(id, prayers);
 
   input.value = '';
 
@@ -764,19 +628,11 @@ function addPrayer(id) {
 
 function removePrayer(id, index) {
 
-  const prayers =
-    JSON.parse(
-      localStorage.getItem(
-        `prayers-${id}`
-      ) || '[]'
-    );
+  const prayers = Storage.getPrayers(id);
 
-  prayers.splice(index, 1);
+prayers.splice(index, 1);
 
-  localStorage.setItem(
-    `prayers-${id}`,
-    JSON.stringify(prayers)
-  );
+Storage.savePrayers(id, prayers);
 
   loadPrayerRequests(id);
 }
@@ -790,12 +646,7 @@ function loadPrayerRequests(id) {
 
   if (!container) return;
 
-  const prayers =
-    JSON.parse(
-      localStorage.getItem(
-        `prayers-${id}`
-      ) || '[]'
-    );
+  const prayers = Storage.getPrayers(id);
 
   if (!prayers.length) {
 
@@ -900,7 +751,7 @@ function loadLeaderHistory(id) {
 function exportEpisodeSummary(id) {
 
   const ep =
-    window.currentEpisode;
+    AppState.episode;
 
   if (!ep) return;
 
@@ -949,7 +800,7 @@ function exportEpisodeSummary(id) {
 
     <div class="share-meta">
 
-      ${window.currentSeason?.title || ''}
+      ${AppState.season?.title || ''}
       • Episódio ${ep.id}
 
     </div>
@@ -1049,34 +900,40 @@ function closeShareModal() {
 
 function updateTimelineProgress() {
   const items = document.querySelectorAll('.timeline-item');
-  const ep = window.currentEpisode;
+
+  const ep = window.AppState?.episode;
 
   if (!ep) return;
 
-  const completed = JSON.parse(
-    localStorage.getItem('completed-episodes') || '[]'
-  );
+  const progress = Storage.getProgress();
 
-  const progress = JSON.parse(
-    localStorage.getItem(`episode-progress-${ep.id}`) || '[]'
-  );
+  const episodeData = progress[ep.id];
+
+  const lastIndex = episodeData?.lastIndex ?? -1;
 
   items.forEach((item) => {
+
+    const index = Number(item.dataset.index);
+
     item.classList.remove(
       'is-future',
       'is-current',
       'is-completed'
     );
 
-    const index = Number(item.dataset.index);
+    if (episodeData?.completed || index < lastIndex - 1) {
 
-    if (progress.includes(index)) {
       item.classList.add('is-completed');
-    } else if (index === progress.length) {
+
+    } else if (index === lastIndex - 1) {
+
       item.classList.add('is-current');
+
     } else {
+
       item.classList.add('is-future');
     }
+
   });
 }
 
@@ -1108,67 +965,37 @@ function toggleTimeline(button) {
 
 function markEpisodeAsCompleted(id) {
 
-  let completed = JSON.parse(
-    localStorage.getItem('completed-episodes') || '[]'
-  );
-
-  if (!completed.includes(id)) {
-
-    completed.push(id);
-
-    localStorage.setItem(
-      'completed-episodes',
-      JSON.stringify(completed)
-    );
-  }
+  Storage.markEpisodeCompleted(id, {
+  completed: true,
+  lastIndex: Infinity
+});
 
   updateSeasonCTA();
 }
 
 function getNextEpisode() {
 
-  if (!currentSeason) return null;
+  const season = AppState.season;
 
-  const completed = JSON.parse(
-    localStorage.getItem('completed-episodes') || '[]'
-  );
+  if (!season) return null;
 
-  return currentSeason.episodes.find(
+  const progress = Storage.getProgress();
+
+const completed = Object.keys(progress)
+  .filter(id => progress[id]?.completed);
+
+  return season.episodes.find(
     ep => !completed.includes(ep.id)
   );
 }
 
-function updateSeasonCTA() {
+window.loadSeason = loadSeason;
+window.openEpisode = openEpisode;
+window.updateSeasonCTA = updateSeasonCTA;
 
-  const button =
-    document.querySelector('.primary-btn');
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest('.timeline-more');
+  if (!btn) return;
 
-  if (!button) return;
-
-  const completed = JSON.parse(
-    localStorage.getItem('completed-episodes') || '[]'
-  );
-
-  const hasProgress =
-    completed.length > 0;
-
-  button.textContent = hasProgress
-    ? 'próximo episódio'
-    : 'entrar na temporada';
-}
-
-function markBlockAsRead(index) {
-  const ep = window.currentEpisode;
-  if (!ep) return;
-
-  const key = `episode-progress-${ep.id}`;
-
-  const progress = JSON.parse(localStorage.getItem(key) || '[]');
-
-  if (!progress.includes(index)) {
-    progress.push(index);
-    localStorage.setItem(key, JSON.stringify(progress));
-  }
-
-  updateTimelineProgress();
-}
+  toggleTimeline(btn);
+});
