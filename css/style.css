@@ -637,6 +637,22 @@ header {
   color:#fff;
 }
 
+.episode-bottom-links {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.episode-bottom-links button {
+  background: none;
+  border: none;
+  color: var(--gold);
+  font-size: 13px;
+  cursor: pointer;
+  padding: 0;
+}
+
 .episode-hero p { font-size:14px; line-height:1.75; color:#d6d6d6; }
 
 /* ── CINEMATIC BLOCKS ── */
@@ -1385,42 +1401,18 @@ header {
 }
 
 .leader-card {
-
-  padding: 36px;
-
-  margin-bottom: 32px;
+  padding: 28px;
+  border-radius: 28px;
 }
 
 .leader-label {
-
-  font-size: 12px;
-
-  letter-spacing: 3px;
-
-  color: rgba(255,255,255,0.45);
-
-  margin-bottom: 24px;
+  margin-bottom: 18px;
 }
 
 .leader-textarea {
-
-  width: 100%;
-
-  min-height: 220px;
-
-  background: transparent;
-
-  border: none;
-
-  resize: vertical;
-
-  color: white;
-
-  font-size: 16px;
-
-  line-height: 1.8;
-
-  outline: none;
+  padding: 18px;
+  margin-bottom: 16px;
+  border-radius: 18px;
 }
 
 .leader-actions {
@@ -1536,9 +1528,9 @@ header {
 
 /* HISTORY */
 
-.leader-history {
-
-  margin-top: 28px;
+.leader-history,
+.prayer-list {
+  margin-top: 22px;
 }
 
 .leader-history-title,
@@ -1555,12 +1547,34 @@ header {
   margin-bottom: 20px;
 }
 
-.leader-history-item {
+.leader-history-item,
+.prayer-item {
+  position: relative;
+  padding: 18px 44px 18px 18px;
+  margin-bottom: 12px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.045);
+  border: 1px solid rgba(255,255,255,0.075);
+}
 
-  padding: 18px 0;
+.leader-note-remove,
+.prayer-remove {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.55);
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  cursor: pointer;
+}
 
-  border-bottom:
-    1px solid rgba(255,255,255,0.06);
+.leader-note-remove:hover,
+.prayer-remove:hover {
+  color: white;
+  background: rgba(255,255,255,0.12);
 }
 
 .leader-history-date {
@@ -2395,8 +2409,7 @@ header {
 }
 
 .prayer-input-row {
-  display: flex;
-  width: 100%;
+  margin-top: 18px;
   gap: 12px;
 }
 
@@ -2417,6 +2430,11 @@ header {
 }
 
 @media (max-width: 520px) {
+  .episode-bottom-links {
+    flex-direction: row;
+  }
+
+@media (max-width: 520px) {
 
   .leader-tools {
     padding: 0;
@@ -2428,9 +2446,10 @@ header {
     border-radius: 22px;
   }
 
-  .prayer-input-row {
+    .prayer-input-row {
     flex-direction: column;
   }
+}
 
   .prayer-add-btn,
   .leader-save-btn,
@@ -2493,8 +2512,9 @@ header {
 }
 
 .complete-episode-btn.completed {
-  background: rgba(29,158,117,0.9);
-  color: white;
+  background: rgba(215,178,109,0.18);
+  color: var(--gold);
+  border: 1px solid rgba(215,178,109,0.45);
 }
 
 .timeline-subtitle {
@@ -2594,4 +2614,109 @@ header {
   font-size: 10px;
   letter-spacing: 2px;
   text-transform: uppercase;
+}
+
+.bottom-back-btn {
+  width: 100%;
+  margin-top: 18px;
+}
+
+.next-episode-btn {
+  width: 100%;
+  margin-top: 12px;
+}
+
+.timeline-title,
+.timeline-subtitle,
+.timeline-preview,
+.timeline-preview p,
+.question-card p,
+.leader-step p,
+.prayer-text,
+.leader-history-text {
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: auto;
+}
+
+/* LEADER TOOLS — refined */
+
+.leader-card {
+  padding: 26px;
+  border-radius: 26px;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.07);
+  box-shadow: none;
+}
+
+.leader-label {
+  color: rgba(215,178,109,0.9);
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  margin-bottom: 16px;
+}
+
+.leader-textarea {
+  background: rgba(255,255,255,0.035);
+  border: 1px solid rgba(255,255,255,0.07);
+  color: rgba(255,255,255,0.86);
+  border-radius: 16px;
+  padding: 16px;
+  min-height: 130px;
+  margin-bottom: 14px;
+}
+
+.leader-save-btn,
+.prayer-add-btn {
+  min-height: 38px;
+  padding: 8px 16px;
+  font-size: 12px;
+  background: rgba(215,178,109,0.12);
+  color: var(--gold);
+  border: 1px solid rgba(215,178,109,0.22);
+}
+
+.leader-history-item,
+.prayer-item {
+  background: rgba(255,255,255,0.028);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  padding: 16px 40px 16px 16px;
+  margin-bottom: 10px;
+}
+
+.leader-history-date {
+  font-size: 11px;
+  color: rgba(255,255,255,0.32);
+  margin-bottom: 6px;
+}
+
+.leader-history-text,
+.prayer-text {
+  color: rgba(255,255,255,0.76);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.leader-note-remove,
+.prayer-remove {
+  width: 22px;
+  height: 22px;
+  top: 12px;
+  right: 12px;
+  font-size: 11px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.38);
+}
+
+.prayer-input {
+  min-height: 42px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.035);
+  border: 1px solid rgba(255,255,255,0.07);
+}
+
+.prayer-input-row {
+  align-items: center;
 }

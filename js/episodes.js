@@ -479,7 +479,7 @@ function goToPreviousBlock() {
       0
     );
 
-  toggleTimeline(prev);
+  toggleTimeline(AppState.timeline.current - 1);
 }
 
 function updateTimelineStates() {
@@ -696,6 +696,16 @@ function renderLeaderArea(id) {
 
 </div>
       
+<div class="episode-bottom-links">
+  <button onclick="backToSeason()">
+    ← voltar para temporada
+  </button>
+
+  <button onclick="openNextEpisode()">
+    próximo episódio →
+  </button>
+</div>
+
     </section>
   `;
 }
@@ -887,25 +897,28 @@ function loadLeaderHistory(id) {
 
     </div>
 
-    ${notes.map(note => `
+    ${notes.map((note, index) => `
 
-      <div class="leader-history-item">
+  <div class="leader-history-item">
 
-        <div class="leader-history-date">
+    <button
+      class="leader-note-remove"
+      onclick="removeLeaderNote(${id}, ${index})"
+    >
+      ✕
+    </button>
 
-          ${note.date}
+    <div class="leader-history-date">
+      ${note.date}
+    </div>
 
-        </div>
+    <div class="leader-history-text">
+      ${note.text}
+    </div>
 
-        <div class="leader-history-text">
+  </div>
 
-          ${note.text}
-
-        </div>
-
-      </div>
-
-    `).join('')}
+`).join('')}
   `;
 }
 
@@ -926,17 +939,26 @@ function toggleTimeline(index) {
 
   updateEpisodeProgress();
 
-  const currentItem =
-    items[AppState.timeline.current];
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      const currentItem =
+        document.querySelector('.timeline-item.is-current');
 
-  if (currentItem) {
-    setTimeout(() => {
-      currentItem.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
+      if (!currentItem) return;
+
+      const headerOffset = 90;
+
+      const y =
+        currentItem.getBoundingClientRect().top +
+        window.scrollY -
+        headerOffset;
+
+      window.scrollTo({
+        top: y,
+        behavior: 'smooth'
       });
-    }, 120);
-  }
+    });
+  });
 }
 
 function exportEpisodeSummary(id) {
@@ -1240,6 +1262,32 @@ function toggleEpisodeCompleted(id) {
 
   btn.classList.toggle('completed', !isCompleted);
 }
+}
+
+function openNextEpisode() {
+  const current = AppState.episode;
+  const season = AppState.season;
+
+  if (!current || !season) return;
+
+  const next = season.episodes.find(ep => ep.id === current.id + 1);
+
+  if (!next || next.status === 'coming-soon') {
+    alert('Próximo episódio em breve.');
+    return;
+  }
+
+  openEpisode(next.id);
+}
+
+function removeLeaderNote(id, index) {
+  const notes = Storage.getNotes(id);
+
+  notes.splice(index, 1);
+
+  Storage.saveNotes(id, notes);
+
+  loadLeaderHistory(id);
 }
 
 window.loadSeason = loadSeason;

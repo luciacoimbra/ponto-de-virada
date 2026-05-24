@@ -12,33 +12,33 @@
   "episodes": [
   {
     "id": 1,
-    "title": "Quem Está Sentado no Trono?",
+    "title": "Quem está sentado no trono?",
     "subtitle": "Jesus é Rei.",
-    "img": "https://images.pexels.com/photos/8112196/pexels-photo-8112196.jpeg?auto=compress&cs=tinysrgb&w=1400",
+    "img": "assets/images/episodio-1-trono.jpg",
     "file": "data/seasons/marcos/episodes/1.json",
     "status": "available"
   },
   {
     "id": 2,
-    "title": "Uma Nova Corrente",
+    "title": "Uma nova correnteza",
     "subtitle": "Eu quero seguir Jesus.",
-    "img": "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=1400&auto=format&fit=crop",
+    "img": "assets/images/episodio-2-trono.jpg",
     "file": "data/seasons/marcos/episodes/2.json",
     "status": "coming-soon"
   },
   {
     "id": 3,
-    "title": "O Toque que Muda Tudo",
+    "title": "O toque que muda tudo",
     "subtitle": "Quem é Jesus?",
-    "img": "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?q=80&w=1400&auto=format&fit=crop",
+    "img": "assets/images/episodio-3-trono.jpg",
     "file": "data/seasons/marcos/episodes/3.json",
     "status": "coming-soon"
   },
   {
     "id": 4,
-    "title": "Quem Está Te Levando Para Jesus?",
+    "title": "Quem está te levando para Jesus?",
     "subtitle": "Amizades que constroem direção.",
-    "img": "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1400&auto=format&fit=crop",
+    "img": "assets/images/episodio-4-trono.jpg",
     "file": "data/seasons/marcos/episodes/4.json",
     "status": "coming-soon"
   }
