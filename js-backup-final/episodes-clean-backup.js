@@ -277,6 +277,41 @@ function renderBlock(block, index) {
 }
 
 /* ══════════════════════════════════════
+   SCRIPTURE MODAL
+══════════════════════════════════════ */
+function openScripture(btn) {
+  const ref  = btn.getAttribute('data-ref');
+  const text = btn.getAttribute('data-text');
+
+  document.getElementById('scriptureRef').textContent  = ref;
+  document.getElementById('scriptureText').textContent = text;
+  document.getElementById('scriptureModal').classList.add('open');
+}
+
+function closeScripture() {
+  document.getElementById('scriptureModal').classList.remove('open');
+}
+
+/* ══════════════════════════════════════
+   TOGGLE BLOCK
+══════════════════════════════════════ */
+function toggleBlock(button) {
+  const block     = button.closest('.cinematic-block');
+  const container = document.getElementById('episodeContent');
+  const isActive  = block.classList.contains('active');
+
+  container.querySelectorAll('.cinematic-block').forEach(b => b.classList.remove('active'));
+  if (!isActive) block.classList.add('active');
+}
+
+/* ══════════════════════════════════════
+   UTILS
+══════════════════════════════════════ */
+function escAttr(str) {
+  return (str || '').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+/* ══════════════════════════════════════
    SEARCH SUPPORT — expõe dados ao search.js
 ══════════════════════════════════════ */
 function getLoadedEpisodes() {

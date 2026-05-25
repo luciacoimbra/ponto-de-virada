@@ -1,0 +1,369 @@
+
+/* =========================================
+   1. DESIGN TOKENS (SISTEMA CENTRAL)
+========================================= */
+
+:root {
+  /* spacing */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 48px;
+  --space-6: 72px;
+
+  /* radius */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 999px;
+
+  /* typography */
+  --text-sm: 14px;
+  --text-md: 16px;
+  --text-lg: 20px;
+  --text-xl: 28px;
+  --text-2xl: 40px;
+
+  /* colors */
+  --bg: #ffffff;
+  --surface: #f6f6f6;
+  --text: #111111;
+  --muted: #666666;
+  --border: #eaeaea;
+
+  /* motion */
+  --transition: 0.25s ease;
+}
+
+
+/* =========================================
+   2. RESET (EVITA QUEBRA ENTRE COMPONENTES JS)
+========================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button, input, textarea {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+p {
+  margin: 0;
+}
+
+
+/* =========================================
+   3. BASE TYPOGRAPHY (IMPORTANTE PARA EPISÓDIOS)
+========================================= */
+
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-size: var(--text-md);
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  margin: 0;
+  line-height: 1.2;
+}
+
+h1 { font-size: var(--text-2xl); }
+h2 { font-size: var(--text-xl); }
+h3 { font-size: var(--text-lg); }
+
+
+/* =========================================
+   4. LAYOUT CORE (SEU APP DEPENDE DISSO)
+========================================= */
+
+.container {
+  width: 100%;
+  max-width: 540px;
+  margin: 0 auto;
+  padding: 0 var(--space-3);
+}
+
+.page {
+  min-height: 100vh;
+}
+
+
+/* =========================================
+   5. EPISODE LIST (episodes.js)
+========================================= */
+
+.episode-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.episode-card:hover {
+  transform: translateY(-2px);
+}
+
+.episode-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.episode-card-content {
+  padding: var(--space-3);
+}
+
+.episode-number {
+  font-size: var(--text-sm);
+  color: var(--muted);
+}
+
+
+/* =========================================
+   6. HERO DO EPISÓDIO
+========================================= */
+
+.episode-hero {
+  position: relative;
+  min-height: 260px;
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+.episode-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+}
+
+.episode-hero-content {
+  position: relative;
+  padding: var(--space-4);
+}
+
+
+/* =========================================
+   7. TIMELINE (SISTEMA CENTRAL DO EPISÓDIO)
+========================================= */
+
+.timeline-item {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-4) 0;
+}
+
+.timeline-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timeline-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--text);
+}
+
+.timeline-line {
+  width: 2px;
+  flex: 1;
+  background: var(--border);
+}
+
+.timeline-title {
+  margin-top: var(--space-1);
+}
+
+.timeline-preview {
+  margin-top: var(--space-2);
+  color: var(--muted);
+}
+
+.line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ─────────────────────────────
+   TIMELINE STATES
+───────────────────────────── */
+
+.timeline-item {
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+
+/* FUTURO */
+
+.timeline-item.is-future {
+  opacity: 0.45;
+}
+
+.timeline-item.is-future .timeline-title,
+.timeline-item.is-future .timeline-preview {
+  color: #888;
+}
+
+/* ATUAL */
+
+.timeline-item.is-current {
+
+  opacity: 1;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.04),
+      rgba(255,255,255,0.01)
+    );
+
+  border-radius: 20px;
+
+  padding-left: 12px;
+
+  transform: scale(1.01);
+}
+
+.timeline-item.is-current .timeline-dot {
+  background: #ffffff;
+
+  box-shadow:
+    0 0 12px rgba(255,255,255,0.6);
+}
+
+.timeline-item.is-current .timeline-title {
+  color: #fff;
+}
+
+.timeline-item.is-current .timeline-preview {
+  color: rgba(255,255,255,0.88);
+}
+
+/* CONCLUÍDO */
+
+.timeline-item.is-completed {
+  opacity: 0.9;
+}
+
+.timeline-item.is-completed .timeline-dot {
+  background: #c8a96b;
+
+  box-shadow:
+    0 0 10px rgba(200,169,107,0.45);
+}
+
+.timeline-item.is-completed .timeline-line {
+  background: rgba(200,169,107,0.35);
+}
+
+.timeline-item.is-completed .timeline-title {
+  color: #f5e6c8;
+}
+
+
+/* =========================================
+   8. SCRIPTURE SYSTEM
+========================================= */
+
+.scripture-highlight {
+  margin: var(--space-4) 0;
+  padding: var(--space-3);
+  background: var(--surface);
+  border-radius: var(--radius-md);
+}
+
+.scripture-reference {
+  font-size: var(--text-sm);
+  color: var(--muted);
+}
+
+
+/* =========================================
+   9. LEADER SYSTEM
+========================================= */
+
+.leader-tools {
+  margin-top: var(--space-5);
+}
+
+.leader-card {
+  background: var(--surface);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-3);
+}
+
+.leader-textarea,
+.prayer-input {
+  width: 100%;
+  padding: var(--space-2);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+
+
+/* =========================================
+   10. SHARE / EXPORT SYSTEM
+========================================= */
+
+.share-card {
+  position: relative;
+  background: white;
+}
+
+.share-overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.export-btn,
+.download-share-btn {
+  height: 48px;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-lg);
+  border: none;
+  background: var(--text);
+  color: var(--bg);
+}
+
+
+/* =========================================
+   11. RESPONSIVIDADE BASE
+========================================= */
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 var(--space-2);
+  }
+
+  .episode-image {
+    height: 160px;
+  }
+}

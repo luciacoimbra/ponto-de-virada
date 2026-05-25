@@ -1,0 +1,74 @@
+/* ── EPISODE VIEW ── */
+.episode-header {
+  padding-top:100px;
+  padding-bottom:28px;
+}
+
+.episode-title {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(36px,10vw,52px);
+  line-height:1.05;
+  margin-bottom:12px;
+  color:#fff;
+}
+
+.episode-sub { color:#d4d4db; line-height:1.8; font-size:15px; }
+
+.episode-hero {
+  height:300px;
+  border-radius:24px;
+  overflow:hidden;
+  position:relative;
+  background-size:cover;
+  background-position:center;
+  margin-bottom:48px;
+  display:flex;
+  align-items:flex-end;
+}
+
+.episode-overlay {
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.1) 0%,rgba(0,0,0,.87) 100%);
+}
+
+.episode-hero-content {
+  position:relative;
+  z-index:2;
+  padding:28px;
+}
+
+.episode-kicker {
+  font-size:10px;
+  letter-spacing:.3em;
+  color:var(--gold);
+  margin-bottom:14px;
+  font-weight:600;
+  text-transform:uppercase;
+}
+
+.episode-hero h1 {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(26px,8vw,42px);
+  line-height:.95;
+  margin-bottom:12px;
+  color:#fff;
+}
+
+.episode-bottom-links {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.episode-bottom-links button {
+  background: none;
+  border: none;
+  color: var(--gold);
+  font-size: 13px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.episode-hero p { font-size:14px; line-height:1.75; color:#d6d6d6; }

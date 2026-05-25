@@ -1,0 +1,60 @@
+/* LAYOUT E UTILITÁRIOS */
+
+.font-display {
+  font-family: 'Playfair Display', serif;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.container {
+  width: 100%;
+  max-width: 540px;
+  margin: 0 auto;
+  padding: 0 22px;
+}
+
+.card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 28px;
+  backdrop-filter: blur(12px);
+}
+
+.glass {
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.06),
+    rgba(255,255,255,0.02)
+  );
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(20px);
+}
+
+.badge {
+  font-size: 10px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+.keywords {
+  font-size: 10px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  line-height: 2;
+}
+
+.section {
+  padding: 64px 0;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  margin-bottom: 24px;
+  color: #fff;
+}

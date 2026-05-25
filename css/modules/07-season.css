@@ -1,0 +1,170 @@
+/* SEASON VIEW */
+
+.episodes-header {
+  padding-top: 100px;
+  padding-bottom: 32px;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--gold);
+  cursor: pointer;
+  margin-bottom: 22px;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.back::before {
+  content: '←';
+  margin-right: 4px;
+}
+
+.episodes-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(44px, 14vw, 64px);
+  line-height: 1;
+  margin-bottom: 16px;
+  color: #fff;
+}
+
+.episodes-sub {
+  color: #d4d4db;
+  line-height: 1.85;
+  font-size: 15px;
+  white-space: pre-line;
+}
+
+.season-intro {
+  margin-top: 14px;
+  margin-bottom: 32px;
+}
+
+.collapsed {
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.expand-btn {
+  margin-top: 10px;
+  background: none;
+  border: none;
+  color: var(--gold);
+  font-size: 13px;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* EPISODE LIST */
+
+.episode-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-bottom: 64px;
+}
+
+.episode-card {
+  position: relative;
+  overflow: hidden;
+  background: #111116;
+  border: 1px solid rgba(255,255,255,.05);
+  border-radius: 24px;
+  cursor: pointer;
+  transition:
+    border-color .2s,
+    transform .2s;
+}
+
+.episode-card:hover {
+  border-color: rgba(215,178,109,.25);
+  transform: scale(1.01);
+}
+
+.episode-card:active {
+  transform: scale(.99);
+}
+
+.episode-image {
+  height: 200px;
+  object-fit: cover;
+  filter: brightness(.65);
+  transition: filter .3s;
+}
+
+.episode-card:hover .episode-image {
+  filter: brightness(.8);
+}
+
+.episode-card-content {
+  padding: 22px;
+}
+
+.episode-number {
+  font-size: 10px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.episode-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  line-height: 1.15;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.episode-card p {
+  color: #d4d4db;
+  line-height: 1.75;
+  font-size: 14px;
+}
+
+.episode-completed {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 3;
+  background: rgba(215,178,109,.92);
+  color: #111;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.episode-card.coming-soon {
+  opacity: 0.45;
+  filter: grayscale(45%);
+  cursor: not-allowed;
+}
+
+.coming-soon-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 5;
+  background: rgba(0,0,0,0.78);
+  color: var(--gold);
+  border: 1px solid rgba(215,178,109,0.35);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.loading-episodes {
+  color: var(--soft);
+  font-size: 14px;
+  padding: 20px 0;
+}

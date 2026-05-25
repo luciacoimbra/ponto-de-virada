@@ -1,0 +1,169 @@
+/* SCRIPTURE HIGHLIGHT */
+
+.scripture-highlight {
+  margin: 80px auto;
+  padding: 0 24px;
+  max-width: 920px;
+}
+
+.scripture-inner {
+  position: relative;
+  padding: 60px 48px;
+  border-radius: 32px;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,0.06),
+      rgba(255,255,255,0.02)
+    );
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(20px);
+  cursor: pointer;
+  transition:
+    transform .4s ease,
+    border-color .4s ease;
+}
+
+.scripture-inner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(212,175,55,0.12),
+      transparent 50%
+    );
+  pointer-events: none;
+}
+
+.scripture-inner:hover {
+  transform: translateY(-2px);
+  border-color: rgba(212,175,55,0.25);
+}
+
+.scripture-reference {
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #d4af37;
+  margin-bottom: 28px;
+}
+
+.scripture-verse {
+  font-size: clamp(28px, 4vw, 52px);
+  line-height: 1.2;
+  font-weight: 600;
+  color: white;
+  max-width: 760px;
+}
+
+.verse-text {
+  display: inline;
+}
+
+.verse-reference-inline {
+  display: inline;
+  margin-left: 14px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.45);
+  white-space: nowrap;
+}
+
+.scripture-highlight-ref {
+  margin-top: 28px;
+  color: rgba(255,255,255,0.45);
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.scripture-read-more {
+  margin-top: 14px;
+  color: #d4af37;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.scripture-btn {
+  display: inline-block;
+  background: none;
+  border: 1px solid rgba(215,178,109,.4);
+  color: var(--gold);
+  border-radius: 999px;
+  padding: 10px 20px;
+  font-size: 13px;
+  cursor: pointer;
+  transition:
+    background .2s,
+    color .2s;
+  margin-top: 4px;
+}
+
+.scripture-btn:hover {
+  background: var(--gold);
+  color: #111;
+}
+
+/* SCRIPTURE MODAL */
+
+.scripture-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+}
+
+.scripture-modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.78);
+  backdrop-filter: blur(12px);
+}
+
+.scripture-modal-content {
+  position: relative;
+  width: min(920px, 92vw);
+  max-height: 82vh;
+  overflow-y: auto;
+  margin: 6vh auto;
+  background: #111111;
+  border-radius: 32px;
+  padding: 56px;
+  border: 1px solid rgba(255,255,255,0.08);
+  z-index: 2;
+}
+
+.scripture-modal-header {
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #d4af37;
+  margin-bottom: 32px;
+}
+
+.scripture-modal-text {
+  color: rgba(255,255,255,0.88);
+  line-height: 2;
+  font-size: 18px;
+}
+
+.scripture-modal-text p {
+  margin-bottom: 24px;
+  line-height: 2;
+}
+
+.scripture-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.08);
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+}

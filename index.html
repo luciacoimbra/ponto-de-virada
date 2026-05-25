@@ -7,7 +7,25 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/modules/01-tokens.css">
+<link rel="stylesheet" href="css/modules/02-reset.css">
+<link rel="stylesheet" href="css/modules/03-layout.css">
+<link rel="stylesheet" href="css/modules/04-buttons.css">
+<link rel="stylesheet" href="css/modules/05-header.css">
+<link rel="stylesheet" href="css/modules/06-home.css">
+<link rel="stylesheet" href="css/modules/07-season.css">
+<link rel="stylesheet" href="css/modules/08-episode.css">
+<link rel="stylesheet" href="css/modules/09-timeline.css">
+<link rel="stylesheet" href="css/modules/10-scripture.css">
+<link rel="stylesheet" href="css/modules/11-leader-tools.css">
+<link rel="stylesheet" href="css/modules/12-share.css">
+<link rel="stylesheet" href="css/modules/14-popup.css">
+<link rel="stylesheet" href="css/modules/15-search.css">
+<link rel="stylesheet" href="css/modules/16-content-types.css">
+<link rel="stylesheet" href="css/modules/13-responsive.css">
+
+<link rel="stylesheet" href="css/style.css">
+
 </head>
 <body>
 
@@ -32,7 +50,7 @@
         <div class="badge">TEMPORADA 1</div>
         <h1 class="font-display">Marcos</h1>
         <p>Uma jornada sobre direção, identidade, silêncio, influência e transformação através do Evangelho de Marcos.</p>
-        <div class="keywords" style="margin-top:20px;">DIREÇÃO · IDENTIDADE · SILÊNCIO · TRANSFORMAÇÃO · JESUS</div>
+        <div class="keywords hero-keywords">DIREÇÃO · IDENTIDADE · SILÊNCIO · TRANSFORMAÇÃO · JESUS</div>
         <button
   id="seasonCTA"
   class="primary-btn"
@@ -54,7 +72,7 @@
           <small>PRÓXIMA TEMPORADA</small>
           <h3>Lucas</h3>
           <p>Parábolas, encontros e histórias sobre compaixão, graça e restauração.</p>
-          <div class="keywords" style="margin-top:16px;">COMPAIXÃO · ENCONTROS · GRAÇA · PARÁBOLAS · ESPERANÇA</div>
+          <div class="keywords season-keywords">COMPAIXÃO · ENCONTROS · GRAÇA · PARÁBOLAS · ESPERANÇA</div>
         </div>
       </div>
     </div>
@@ -87,15 +105,6 @@ Menos aparência. Mais transformação.</p>
     <input type="text" placeholder="Pesquisar episódios..." id="searchInput" oninput="performSearch()"/>
     <div class="results" id="results"></div>
     <button class="close-btn" onclick="closeSearch()">Fechar ×</button>
-  </div>
-</div>
-
-<!-- ══════════ SCRIPTURE MODAL ══════════ -->
-<div class="popup" id="scriptureModal">
-  <div class="popup-card scripture-card">
-    <p class="scripture-ref-label" id="scriptureRef"></p>
-    <p class="scripture-body" id="scriptureText"></p>
-    <button class="close-btn" onclick="closeScripture()">Fechar ×</button>
   </div>
 </div>
 
@@ -142,7 +151,7 @@ Prepare-se. A pedra já começou a rolar.</p>
       </div>
     </div>
     <div class="episode-list" id="episodeList">
-      <p style="color:var(--soft);font-size:14px;padding:20px 0;">Carregando episódios…</p>
+      <p class="loading-episodes">Carregando episódios…</p>
     </div>
   </div>
 </div>
@@ -161,8 +170,15 @@ Prepare-se. A pedra já começou a rolar.</p>
 
 <script src="js/storage.js"></script>
 <script src="js/navigation.js"></script>
+<script src="js/modules/app-state.js"></script>
+<script src="js/modules/scripture.js"></script>
+<script src="js/modules/timeline.js"></script>
+<script src="js/modules/leader-tools.js"></script>
+<script src="js/modules/share.js"></script>
+
 <script src="js/episodes.js"></script>
 <script src="js/search.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
 </body>

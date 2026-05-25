@@ -277,6 +277,13 @@ function renderBlock(block, index) {
 }
 
 /* ══════════════════════════════════════
+   UTILS
+══════════════════════════════════════ */
+function escAttr(str) {
+  return (str || '').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+/* ══════════════════════════════════════
    SEARCH SUPPORT — expõe dados ao search.js
 ══════════════════════════════════════ */
 function getLoadedEpisodes() {

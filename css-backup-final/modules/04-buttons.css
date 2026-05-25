@@ -1,0 +1,80 @@
+/* BUTTONS */
+
+.btn,
+.primary-btn,
+.timeline-more,
+.leader-save-btn,
+.prayer-add-btn,
+.export-btn,
+.download-share-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition:
+    transform .25s ease,
+    opacity .25s ease,
+    background .25s ease,
+    border-color .25s ease;
+  text-decoration: none;
+}
+
+.btn:hover,
+.primary-btn:hover,
+.timeline-more:hover,
+.leader-save-btn:hover,
+.prayer-add-btn:hover,
+.export-btn:hover,
+.download-share-btn:hover {
+  transform: translateY(-2px);
+  opacity: .96;
+}
+
+.btn:active,
+.primary-btn:active,
+.timeline-more:active,
+.leader-save-btn:active,
+.prayer-add-btn:active,
+.export-btn:active,
+.download-share-btn:active {
+  transform: scale(.98);
+}
+
+.btn-gold,
+.primary-btn,
+.export-btn {
+  background: var(--gold);
+  color: #111;
+  font-weight: 600;
+}
+
+.btn-gold:hover,
+.primary-btn:hover,
+.export-btn:hover {
+  background: var(--gold2);
+}
+
+.btn-glass,
+.download-share-btn {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: white;
+  backdrop-filter: blur(12px);
+}
+
+.btn-glass:hover,
+.download-share-btn:hover {
+  background: rgba(255,255,255,0.14);
+}
+
+.primary-btn {
+  margin-top: 32px;
+  letter-spacing: .04em;
+}

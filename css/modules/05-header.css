@@ -1,0 +1,50 @@
+/* HEADER */
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  background: rgba(10,10,12,.88);
+  border-bottom: 1px solid rgba(255,255,255,.04);
+}
+
+.header-inner {
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--gold);
+  cursor: pointer;
+  background: none;
+  border: none;
+  letter-spacing: .02em;
+}
+
+.header-actions {
+  display: flex;
+  gap: 14px;
+}
+
+.header-actions button {
+  background: none;
+  border: none;
+  color: var(--soft);
+  font-size: 13px;
+  cursor: pointer;
+  transition: color .2s;
+  padding: 4px 0;
+}
+
+.header-actions button:hover {
+  color: #fff;
+}

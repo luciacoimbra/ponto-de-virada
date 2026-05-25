@@ -1,0 +1,677 @@
+/* ════════════════════════════════════════
+   O PONTO DE VIRADA — style.css
+   Ordem: Variables → Reset → Layout →
+          Header → Home → Popups →
+          Season → Episode → Responsive
+════════════════════════════════════════ */
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width:4px; }
+::-webkit-scrollbar-track { background:transparent; }
+::-webkit-scrollbar-thumb { background:var(--gold); border-radius:2px; }
+
+/* ── MANIFESTO POPUP ── */
+.popup {
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.85);
+  z-index:4000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+}
+.popup.open { display:flex; }
+
+.popup-card {
+  background:#111116;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:28px;
+  padding:36px 32px;
+  max-width:500px;
+  width:100%;
+  max-height:85vh;
+  overflow-y:auto;
+}
+
+.popup-card h2 {
+  font-family:'Playfair Display',serif;
+  font-size:32px;
+  margin-bottom:20px;
+  color:#fff;
+}
+
+.popup-card p {
+  color:#d3d3db;
+  line-height:2;
+  font-size:15px;
+  white-space:pre-line;
+}
+
+.close-btn {
+  margin-top:26px;
+  background:none;
+  border:none;
+  color:var(--gold);
+  cursor:pointer;
+  font-size:14px;
+  padding:4px 0;
+  display:block;
+}
+
+/* ── SEARCH MODAL ── */
+.search-modal {
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.92);
+  z-index:5000;
+  display:none;
+  padding:24px;
+}
+.search-modal.open { display:block; }
+
+.search-box {
+  max-width:500px;
+  margin:110px auto 0;
+}
+
+.search-box input {
+  width:100%;
+  padding:16px 20px;
+  background:#141419;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:18px;
+  color:#fff;
+  font-size:15px;
+  outline:none;
+  font-family:'Inter',sans-serif;
+  transition:border-color .2s;
+}
+.search-box input:focus { border-color:rgba(215,178,109,.5); }
+
+.results { margin-top:16px; display:flex; flex-direction:column; gap:12px; }
+
+.result {
+  background:#141419;
+  padding:18px 20px;
+  border-radius:18px;
+  cursor:pointer;
+  border:1px solid rgba(255,255,255,.05);
+  transition:border-color .2s;
+}
+.result:hover { border-color:rgba(215,178,109,.3); }
+.result h4 { font-size:15px; margin-bottom:5px; color:#fff; }
+.result p  { color:var(--soft); line-height:1.6; font-size:13px; }
+
+/* ════════════════════════════════════════
+   BLOCK CONTENT TYPES
+════════════════════════════════════════ */
+
+/* ── Scripture ── */
+
+.scripture-btn {
+  display: inline-block;
+  background: none;
+  border: 1px solid rgba(215,178,109,.4);
+  color: var(--gold);
+  border-radius: 999px;
+  padding: 10px 20px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+  margin-top: 4px;
+}
+.scripture-btn:hover { background: var(--gold); color: #111; }
+
+/* ── Scripture modal ── */
+.scripture-card { max-height: 80vh; overflow-y: auto; }
+
+.scripture-ref-label {
+  font-size: 11px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 18px;
+  font-weight: 600;
+}
+
+.scripture-body {
+  color: #d8d8e0;
+  line-height: 2;
+  font-size: 15px;
+  white-space: pre-line;
+}
+
+/* ── Discussion list ── */
+.discussion-list {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.discussion-list li {
+  font-size: 15px;
+  line-height: 1.85;
+  color: #d0d0d0;
+}
+
+/* ── Playlist ── */
+.playlist-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.playlist-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.playlist-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+  opacity: .7;
+}
+
+.playlist-title  { font-size: 14px; color: #fff; font-weight: 500; }
+.playlist-artist { font-size: 13px; color: var(--soft); }
+
+/* ── Beyond / Quero ir Além ── */
+.beyond-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.beyond-item {
+  border-left: 1px solid rgba(215,178,109,.25);
+  padding-left: 16px;
+}
+
+.beyond-label {
+  font-size: 10px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.beyond-item p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #d0d0d0;
+  margin-bottom: 0;
+}
+
+/* ── Closing / Reflexão Final ── */
+.closing-text {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(16px, 4vw, 20px);
+  font-style: italic;
+  line-height: 1.7;
+  color: #e8e8f0;
+  text-align: center;
+  padding: 8px 0;
+}
+
+/* ════════════════════════════════════════
+   TIMELINE STATES
+════════════════════════════════════════ */
+
+.timeline-item {
+
+  opacity: .45;
+
+  transition:
+    opacity .35s ease,
+    transform .35s ease;
+}
+
+/* CONCLUÍDO */
+
+.episode-card {
+
+  position: relative;
+}
+
+.episode-completed {
+
+  position: absolute;
+
+  top: 18px;
+  right: 18px;
+
+  z-index: 3;
+
+  background: rgba(215,178,109,.92);
+
+  color: #111;
+
+  padding: 8px 14px;
+
+  border-radius: 999px;
+
+  font-size: 11px;
+
+  letter-spacing: 1px;
+
+  text-transform: uppercase;
+
+  font-weight: 700;
+}
+
+.episode-summary {
+  padding: 20px;
+  font-size: 16px;
+  line-height: 1.6;
+  opacity: 0.85;
+  max-width: 700px;
+}
+
+/* =========================================
+   EPISODE NAVIGATION
+========================================= */
+
+.episode-navigation {
+
+  position: sticky;
+
+  bottom: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 16px;
+
+  padding: 20px;
+
+  background:
+    rgba(10,10,12,0.88);
+
+  backdrop-filter: blur(18px);
+
+  border-top:
+    1px solid rgba(255,255,255,0.06);
+
+  z-index: 50;
+}
+
+.episode-progress {
+
+  flex: 1;
+
+  height: 6px;
+
+  border-radius: 999px;
+
+  overflow: hidden;
+
+  background:
+    rgba(255,255,255,0.08);
+}
+
+.episode-progress-bar {
+
+  width: 0%;
+
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      #c8a96b,
+      #f5e6c8
+    );
+
+  transition:
+    width .4s ease;
+}
+
+.episode-nav-btn {
+
+  border: none;
+
+  background:
+    rgba(255,255,255,0.06);
+
+  color: white;
+
+  padding: 12px 18px;
+
+  border-radius: 999px;
+
+  cursor: pointer;
+
+  font-size: 12px;
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+
+  transition:
+    all .3s ease;
+}
+
+.episode-nav-btn:hover {
+
+  background:
+    rgba(255,255,255,0.12);
+}
+
+/* =========================================
+   FOCUS EPISODE MODE
+========================================= */
+
+.timeline-item {
+
+  min-height: 62vh;
+
+  display: flex;
+
+  align-items: center;
+
+  transition:
+    opacity .45s ease,
+    transform .45s ease,
+    filter .45s ease;
+}
+
+.timeline-item.is-current {
+
+  min-height: 70vh;
+
+  opacity: 1;
+
+  transform: scale(1);
+
+  filter: none;
+}
+
+.timeline-item.is-future,
+.timeline-item.is-completed {
+
+  min-height: auto;
+
+  opacity: .32;
+
+  transform: scale(.96);
+
+  filter: blur(.2px);
+}
+
+.timeline-item.is-current .timeline-content {
+
+  width: 100%;
+}
+
+.timeline-item.is-current .timeline-title {
+
+  font-size: clamp(34px, 8vw, 56px);
+
+  line-height: .98;
+
+  margin-bottom: 28px;
+}
+
+.timeline-item.is-current .timeline-preview p {
+
+  font-size: 17px;
+
+  line-height: 2;
+}
+
+.timeline-item.is-current .timeline-more {
+
+  margin-top: 32px;
+}
+
+  .timeline-item.is-current {
+
+    min-height: 68vh;
+  }
+
+  .timeline-item.is-current .timeline-title {
+
+    font-size: clamp(30px, 10vw, 44px);
+  }
+
+  .timeline-item.is-current .timeline-preview p {
+
+    font-size: 15.5px;
+
+    line-height: 1.9;
+  }
+
+.timeline-item.hidden {
+  display: none;
+}
+
+.timeline-item.is-current {
+  display: flex;
+  min-height: 65vh;
+  opacity: 1;
+}
+
+.timeline-preview.line-clamp {
+  display: block;
+  overflow: visible;
+}
+
+.timeline-preview.line-clamp::after {
+  display: none;
+}
+
+/* RESPONSIVE FIX — LEADER TOOLS */
+
+.leader-card {
+  overflow: hidden;
+}
+
+.leader-textarea,
+.prayer-input {
+  max-width: 100%;
+  width: 100%;
+}
+
+.prayer-input-row {
+  margin-top: 18px;
+  gap: 12px;
+}
+
+.prayer-input {
+  min-width: 0;
+}
+
+.prayer-add-btn {
+  flex-shrink: 0;
+}
+
+.timeline-content,
+.leader-card,
+.prayer-text,
+.leader-history-text {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+
+
+  .leader-card {
+    padding: 24px 18px;
+    border-radius: 22px;
+  }
+
+    .prayer-input-row {
+    flex-direction: column;
+  }
+
+  .prayer-add-btn,
+  .leader-save-btn,
+  .export-btn {
+    width: 100%;
+  }
+
+  .timeline-item.is-current {
+    padding: 24px 18px;
+  }
+
+  .timeline-title {
+    font-size: clamp(24px, 8vw, 34px);
+  }
+
+  .scripture-inner {
+    padding: 36px 24px;
+  }
+
+  .scripture-verse {
+    font-size: clamp(24px, 8vw, 34px);
+  }
+
+.complete-episode-btn {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.export-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.leader-tools .complete-episode-btn {
+  margin-top: 24px;
+}
+
+.question-card {
+  background: rgba(215,178,109,0.08);
+  border: 1px solid rgba(215,178,109,0.18);
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 14px;
+}
+
+.question-number {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.question-card p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: white;
+}
+
+.complete-episode-btn.completed {
+  background: rgba(215,178,109,0.18);
+  color: var(--gold);
+  border: 1px solid rgba(215,178,109,0.45);
+}
+
+.timeline-subtitle {
+  color: rgba(255,255,255,0.55);
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 24px;
+  font-style: italic;
+}
+
+.leader-step {
+  display: flex;
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.leader-step-number {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(215,178,109,0.14);
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 13px;
+}
+
+.leader-step h3 {
+  font-size: 15px;
+  color: white;
+  margin-bottom: 4px;
+}
+
+.leader-step p {
+  color: rgba(255,255,255,0.72);
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+.share-challenge-label {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 10px;
+}
+
+.share-challenge {
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.86);
+  margin-bottom: 32px;
+}
+
+.episode-card.coming-soon {
+  opacity: 0.45;
+  filter: grayscale(45%);
+  cursor: not-allowed;
+  position: relative;
+}
+
+.coming-soon-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 5;
+  background: rgba(0,0,0,0.78);
+  color: var(--gold);
+  border: 1px solid rgba(215,178,109,0.35);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.bottom-back-btn {
+  width: 100%;
+  margin-top: 18px;
+}
+
+.next-episode-btn {
+  width: 100%;
+  margin-top: 12px;
+}
+
+.timeline-title,
+.timeline-subtitle,
+.timeline-preview,
+.timeline-preview p,
+.question-card p,
+.leader-step p,
+.prayer-text,
+.leader-history-text {
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: auto;
+}

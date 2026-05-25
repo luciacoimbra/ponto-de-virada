@@ -1,0 +1,96 @@
+@media(min-width:500px) {
+  .episode-hero {
+    height:360px;
+  }
+}
+
+@media(min-width:700px) {
+
+  .hero h1 {
+    font-size:82px;
+  }
+
+  .container {
+    max-width:600px;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .scripture-highlight {
+    padding: 14px;
+  }
+
+  .scripture-verse {
+    max-width: 100%;
+  }
+
+  .verse-text {
+    font-size: 16px;
+    line-height: 1.6;
+    letter-spacing: 0.1px;
+    white-space: normal;
+  }
+
+  .timeline-item {
+    min-height: 58vh;
+    align-items: flex-start;
+    padding-top: 48px;
+  }
+
+  .timeline-item.is-current {
+    min-height: 68vh;
+  }
+
+  .timeline-item.is-current .timeline-title {
+    font-size: clamp(30px, 10vw, 44px);
+  }
+
+  .timeline-item.is-current .timeline-preview p {
+    font-size: 15.5px;
+    line-height: 1.9;
+  }
+}
+
+@media (max-width: 520px) {
+
+  .episode-bottom-links {
+    flex-direction: row;
+  }
+
+  .leader-tools {
+    padding: 0;
+    margin: 72px auto;
+  }
+
+  .leader-card {
+    padding: 24px 18px;
+    border-radius: 22px;
+  }
+
+  .prayer-input-row {
+    flex-direction: column;
+  }
+
+  .prayer-add-btn,
+  .leader-save-btn,
+  .export-btn {
+    width: 100%;
+  }
+
+  .timeline-item.is-current {
+    padding: 24px 18px;
+  }
+
+  .timeline-title {
+    font-size: clamp(24px, 8vw, 34px);
+  }
+
+  .scripture-inner {
+    padding: 36px 24px;
+  }
+
+  .scripture-verse {
+    font-size: clamp(24px, 8vw, 34px);
+  }
+}

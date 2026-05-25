@@ -1,0 +1,83 @@
+/* CONTENT TYPES */
+
+.discussion-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-left: 20px;
+}
+
+.discussion-list li {
+  color: #d0d0d0;
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+.playlist-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.playlist-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.playlist-dot {
+  width: 6px;
+  height: 6px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--gold);
+  opacity: .7;
+}
+
+.playlist-title {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.playlist-artist {
+  color: var(--soft);
+  font-size: 13px;
+}
+
+.beyond-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.beyond-item {
+  padding-left: 16px;
+  border-left: 1px solid rgba(215,178,109,.25);
+}
+
+.beyond-label {
+  margin-bottom: 8px;
+  color: var(--gold);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+}
+
+.beyond-item p {
+  margin-bottom: 0;
+  color: #d0d0d0;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.closing-text {
+  padding: 8px 0;
+  color: #e8e8f0;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(16px, 4vw, 20px);
+  font-style: italic;
+  line-height: 1.7;
+}
