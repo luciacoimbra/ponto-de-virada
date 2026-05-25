@@ -41,8 +41,9 @@
   }
 
   .timeline-item.is-current .timeline-title {
-    font-size: clamp(30px, 10vw, 44px);
-  }
+  font-size: clamp(22px, 5.5vw, 32px);
+  line-height: 1.08;
+}
 
   .timeline-item.is-current .timeline-preview p {
     font-size: 15.5px;
@@ -76,8 +77,8 @@
   }
 
   .timeline-title {
-    font-size: clamp(24px, 8vw, 34px);
-  }
+  font-size: clamp(22px, 5.5vw, 30px);
+}
 
   .scripture-inner {
     padding: 36px 24px;

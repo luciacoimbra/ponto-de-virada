@@ -1,4 +1,4 @@
-/* TIMELINE */
+/* TIMELINE BASE */
 
 .timeline-item {
   position: relative;
@@ -8,6 +8,7 @@
   min-height: 62vh;
   margin-bottom: 48px;
   opacity: .45;
+  will-change: opacity, transform, filter;
   transition:
     opacity .45s ease,
     transform .45s ease,
@@ -30,7 +31,7 @@
   height: 14px;
   margin-top: 8px;
   border-radius: 50%;
-  background: #ffffff;
+  background: #fff;
 }
 
 .timeline-line {
@@ -57,8 +58,11 @@
 .timeline-title {
   margin-bottom: 18px;
   color: #fff;
-  font-size: clamp(28px, 4vw, 34px);
-  line-height: 1.2;
+  font-size: clamp(26px, 4vw, 32px);
+  line-height: 1.18;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: auto;
 }
 
 .timeline-subtitle {
@@ -67,10 +71,14 @@
   font-size: 15px;
   line-height: 1.7;
   font-style: italic;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: auto;
 }
 
 .timeline-preview {
   position: relative;
+  max-width: 62ch;
   overflow: hidden;
   opacity: 1;
   transform: translateY(0);
@@ -81,28 +89,26 @@
 }
 
 .timeline-preview p {
+  max-width: 58ch;
   margin-bottom: 16px;
   color: rgba(255,255,255,0.82);
-  line-height: 1.8;
-}
-
-.timeline-title,
-.timeline-subtitle,
-.timeline-preview,
-.timeline-preview p,
-.question-card p,
-.leader-step p {
+  line-height: 1.95;
   overflow-wrap: break-word;
   word-break: normal;
   hyphens: auto;
 }
 
+.timeline-preview p + p {
+  margin-top: 28px;
+}
+
 /* TIMELINE STATES */
 
 .timeline-item.is-current {
-  display: flex;
+  width: calc(100% + 16px);
   min-height: 70vh;
-  padding: 32px 28px;
+  margin-left: -8px;
+  padding: 42px 30px 46px;
   opacity: 1;
   transform: scale(1);
   filter: none;
@@ -113,42 +119,121 @@
       rgba(255,255,255,0.015)
     );
   border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 32px;
+  border-radius: 34px;
   box-shadow: 0 20px 60px rgba(0,0,0,0.28);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(18px);
+  transition:
+    opacity .7s ease,
+    transform .7s ease,
+    background .7s ease,
+    border-color .7s ease;
+  animation: currentSceneIn .72s cubic-bezier(.2, .8, .2, 1) both;
 }
 
-.timeline-item.is-current .timeline-dot {
-  background: var(--gold);
-  box-shadow: 0 0 0 8px rgba(215,178,109,.12);
-  transform: scale(1.15);
+.timeline-item.is-current::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(215,178,109,0.10),
+      transparent 42%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(255,255,255,0.045),
+      transparent 48%
+    );
 }
 
 .timeline-item.is-current .timeline-content {
   width: 100%;
+  padding-top: 10px;
+}
+
+.timeline-item.is-current .timeline-label {
+  margin-bottom: 18px;
+  color: rgba(215,178,109,0.82);
 }
 
 .timeline-item.is-current .timeline-title {
-  margin-bottom: 28px;
-  font-size: clamp(34px, 8vw, 56px);
-  line-height: .98;
+  max-width: 18ch;
+  margin-bottom: 22px;
+  font-size: clamp(22px, 5.5vw, 32px);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+
+.timeline-item.is-current .timeline-subtitle {
+  max-width: 34ch;
+  margin-bottom: 34px;
+}
+
+.timeline-item.is-current .timeline-preview {
+  animation: sceneFadeUp .65s ease both;
 }
 
 .timeline-item.is-current .timeline-preview p {
+  position: relative;
+  padding-left: 0;
+  margin-bottom: 22px;
   font-size: 17px;
-  line-height: 2;
+  line-height: 2.05;
 }
 
-.timeline-item.is-current .timeline-more {
-  margin-top: 32px;
+.timeline-item.is-current .timeline-preview p:last-child {
+  margin-bottom: 0;
 }
 
-.timeline-item.is-future,
+.timeline-item.is-current .timeline-preview p:nth-child(1) {
+  font-size: 17.5px;
+  color: rgba(255,255,255,0.9);
+}
+
+.timeline-item.is-current .timeline-preview p:nth-child(2) {
+  color: rgba(255,255,255,0.78);
+}
+
+.timeline-item.is-current .timeline-preview p:nth-child(3) {
+  color: rgba(255,255,255,0.72);
+}
+
+.timeline-item.is-current .timeline-preview p:nth-child(4) {
+  margin-top: 34px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.86);
+}
+
+.timeline-item.is-future {
+  min-height: auto;
+  opacity: .22;
+  transform: scale(.96);
+  filter: blur(.2px);
+}
+
 .timeline-item.is-completed {
   min-height: auto;
   opacity: .32;
   transform: scale(.96);
   filter: blur(.2px);
+  animation: completedSceneSettle .48s ease both;
+}
+
+.timeline-item.is-future:first-of-type {
+  opacity: .26;
+  transform: scale(.985);
+}
+
+/* TIMELINE MARKER STATES */
+
+.timeline-item.is-current .timeline-dot {
+  background: var(--gold);
+  box-shadow: 0 0 0 8px rgba(215,178,109,.12);
+  transform: scale(1.15);
 }
 
 .timeline-item.is-future .timeline-dot {
@@ -157,7 +242,7 @@
 }
 
 .timeline-item.is-completed .timeline-dot {
-  background: #ffffff;
+  background: #fff;
 }
 
 .timeline-item.is-completed .timeline-line {
@@ -247,6 +332,9 @@
   color: white;
   font-size: 16px;
   line-height: 1.7;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: auto;
 }
 
 /* LEADER STEPS INSIDE TIMELINE */
@@ -281,6 +369,9 @@
   color: rgba(255,255,255,0.72);
   font-size: 14px;
   line-height: 1.7;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: auto;
 }
 
 /* EPISODE NAVIGATION */
@@ -333,4 +424,178 @@
 
 .episode-nav-btn:hover {
   background: rgba(255,255,255,0.12);
+}
+
+/* CINEMATIC BLOCK TYPES */
+
+.timeline-opening.is-current {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(215,178,109,0.10),
+      rgba(255,255,255,0.015)
+    );
+  border-color: rgba(215,178,109,0.18);
+}
+
+.timeline-context.is-current {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.045),
+      rgba(255,255,255,0.012)
+    );
+}
+
+.timeline-reflection.is-current {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.05),
+      rgba(255,255,255,0.015)
+    );
+}
+
+.timeline-leader.is-current {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(120,100,160,0.10),
+      rgba(255,255,255,0.012)
+    );
+  border-color: rgba(180,160,220,0.14);
+}
+
+.timeline-discussion.is-current {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(215,178,109,0.11),
+      rgba(215,178,109,0.025)
+    );
+  border-color: rgba(215,178,109,0.18);
+}
+
+.timeline-challenge.is-current {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(200,169,107,0.12),
+      rgba(255,255,255,0.015)
+    );
+}
+
+.timeline-closing.is-current {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.035),
+      rgba(215,178,109,0.035)
+    );
+  border-color: rgba(215,178,109,0.16);
+}
+
+/* TYPE-SPECIFIC SCENE DETAILS */
+
+.timeline-opening.is-current .timeline-title::after,
+.timeline-challenge.is-current .timeline-title::after,
+.timeline-closing.is-current .timeline-title::after {
+  content: '';
+  display: block;
+  width: 42px;
+  height: 2px;
+  margin-top: 18px;
+  border-radius: 999px;
+  background: var(--gold);
+  opacity: .65;
+}
+
+.timeline-context.is-current .timeline-label {
+  color: rgba(255,255,255,0.48);
+}
+
+.timeline-context.is-current .timeline-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.timeline-reflection.is-current .timeline-preview p:first-child {
+  font-size: 18px;
+  color: rgba(255,255,255,0.92);
+}
+
+.timeline-discussion.is-current .question-card {
+  margin-bottom: 18px;
+  padding: 24px;
+  border-radius: 24px;
+  background: rgba(215,178,109,0.10);
+  border-color: rgba(215,178,109,0.22);
+}
+
+.timeline-discussion.is-current .question-number {
+  margin-bottom: 12px;
+  opacity: .82;
+}
+
+.timeline-discussion.is-current .question-card p {
+  font-size: 17px;
+  line-height: 1.75;
+}
+
+.timeline-leader.is-current .leader-step {
+  padding: 20px 0;
+}
+
+.timeline-leader.is-current .leader-step-number {
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.72);
+}
+
+.timeline-challenge.is-current .timeline-preview p {
+  font-size: 17px;
+}
+
+.timeline-closing.is-current .timeline-preview p:last-child {
+  color: rgba(215,178,109,0.92);
+}
+
+/* ANIMATIONS */
+
+@keyframes sceneFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes currentSceneIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(.985);
+    filter: blur(2px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes completedSceneSettle {
+  from {
+    opacity: .55;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: .32;
+    transform: scale(.96);
+  }
 }

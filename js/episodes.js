@@ -246,7 +246,10 @@ function renderBlock(block, index) {
     .join('');
 
   return `
-    <section class="timeline-item" data-index="${index}">
+    <section
+  class="timeline-item timeline-${block.type || 'default'}"
+  data-index="${index}"
+>
 
       <div class="timeline-marker">
         <div class="timeline-dot"></div>
