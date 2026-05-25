@@ -65,8 +65,8 @@
   <section class="section">
     <div class="container">
       <h2 class="section-title font-display">Em breve</h2>
-      <div class="season-card">
-        <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?q=80&w=1200&auto=format&fit=crop" alt="Próxima temporada — Lucas">
+      <div class="season-card coming-soon-season" onclick="openComingSoonSeason()">
+  <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?q=80&w=1200&auto=format&fit=crop" alt="Próxima temporada — Lucas">
         <div class="season-overlay"></div>
         <div class="season-content">
           <small>PRÓXIMA TEMPORADA</small>
@@ -180,6 +180,25 @@ Prepare-se. A pedra já começou a rolar.</p>
 <script src="js/search.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+<div class="popup" id="comingSoonPopup">
+  <div class="popup-card">
+    <h2 class="font-display">Lucas vem aí</h2>
+    <p>Estamos preparando a próxima jornada.
+Novos episódios serão adicionados em breve.</p>
+    <button class="close-btn" onclick="closeComingSoonSeason()">Fechar ×</button>
+  </div>
+</div>
+
+<script>
+  function openComingSoonSeason() {
+    document.getElementById('comingSoonPopup').classList.add('open');
+  }
+
+  function closeComingSoonSeason() {
+    document.getElementById('comingSoonPopup').classList.remove('open');
+  }
+</script>
 
 </body>
 </html>

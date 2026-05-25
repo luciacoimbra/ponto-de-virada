@@ -13,12 +13,28 @@ function showOnly(id) {
 
 function goHome() {
   showOnly('home-view');
+  window.scrollTo({
+  top: 0,
+  behavior: 'smooth'
+  
+});
+const intro = document.getElementById('seasonIntro');
+const expandBtn = document.getElementById('expandBtn');
+
+if (intro && expandBtn) {
+  intro.classList.add('collapsed');
+  expandBtn.textContent = '...mais';
+}
 }
 
 function backToSeason() {
   collapseSeasonIntro();
   collapseSeasonIntro();
 showOnly('season-view');
+window.scrollTo({
+  top: 0,
+  behavior: 'smooth'
+});
 }
 
 function openSeason(seasonId = 'marcos') {
@@ -102,4 +118,28 @@ function collapseSeasonIntro() {
 
   intro.classList.add('collapsed');
   btn.textContent = '...mais';
+}
+
+function showAppMessage(message) {
+  const popup = document.createElement('div');
+
+  popup.className = 'popup open';
+
+  popup.innerHTML = `
+    <div class="popup-card">
+      <h2 class="font-display">Algo não carregou</h2>
+      <p>${message}</p>
+      <button class="close-btn" onclick="this.closest('.popup').remove()">
+        Fechar ×
+      </button>
+    </div>
+  `;
+
+  document.body.appendChild(popup);
+}
+
+function openComingSoonEpisode() {
+  showAppMessage(
+    'Este episódio ainda está em desenvolvimento. Novas lições serão adicionadas em breve.'
+  );
 }

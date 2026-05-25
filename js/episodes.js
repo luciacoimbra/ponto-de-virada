@@ -42,6 +42,10 @@ function buildEpisodeList() {
   container.innerHTML = AppState.season.episodes.map(ep => `
   <div
     class="episode-card ${ep.status === 'coming-soon' ? 'coming-soon' : ''}"
+    onclick="${ep.status === 'coming-soon'
+  ? `openComingSoonEpisode()`
+  : `openEpisode(${ep.id})`
+}"
     data-id="${ep.id}"
   >
 
@@ -82,7 +86,7 @@ async function openEpisode(id) {
     AppState.season.episodes.find(e => e.id === id);
 
   if (!epMeta) {
-    alert('Episódio não encontrado');
+    showAppMessage('Episódio não encontrado.');
     return;
   }
 
@@ -154,6 +158,10 @@ setTimeout(() => {
 }, 0);
 
     showOnly('episode-view');
+    window.scrollTo({
+  top: 0,
+  behavior: 'smooth'
+  });
 
     AppState.timeline.current = 0;
 
@@ -163,9 +171,9 @@ setTimeout(() => {
 
     console.error(error);
 
-    alert('Não foi possível abrir o episódio.');
+    showAppMessage('Não foi possível abrir este episódio agora.');
 
-  }
+  }  
 }
 
 /* ══════════════════════════════════════
