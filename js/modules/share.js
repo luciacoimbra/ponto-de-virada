@@ -98,15 +98,16 @@ function exportEpisodeSummary(id) {
 
     </div>
 
-    ${prayers.map(p => `
-
-      <div class="share-prayer">
-
-        • ${p}
-
+    ${prayers.length
+  ? prayers.map(p => `
+      <div class="share-prayer">• ${p}</div>
+    `).join('')
+  : `
+      <div class="share-prayer share-prayer-empty">
+        Nenhum pedido registrado nesta semana.
       </div>
-
-    `).join('')}
+    `
+}
 
   </div>
 
