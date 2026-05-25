@@ -16,40 +16,33 @@
 }
 
 .leader-label {
-  color: rgba(215,178,109,0.9);
+  color: rgba(215,178,109,0.92);
   font-size: 10px;
   letter-spacing: 2.5px;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
 }
 
 .leader-textarea {
   width: 100%;
   max-width: 100%;
-  min-height: 130px;
-  padding: 16px;
+  min-height: 160px;
+  padding: 22px 20px;
   margin-bottom: 14px;
-  border-radius: 16px;
-  background: rgba(255,255,255,0.035);
-  border: 1px solid rgba(255,255,255,0.07);
-  color: rgba(255,255,255,0.86);
-}
-
-.leader-actions {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-top: 20px;
-}
-
-.leader-save-btn,
-.prayer-add-btn {
-  min-height: 38px;
-  padding: 8px 16px;
-  font-size: 12px;
-  background: rgba(215,178,109,0.12);
-  color: var(--gold);
-  border: 1px solid rgba(215,178,109,0.22);
-  backdrop-filter: blur(10px);
+  border-radius: 22px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.045),
+      rgba(255,255,255,0.02)
+    );
+  border: 1px solid rgba(215,178,109,0.12);
+  color: rgba(255,255,255,0.88);
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  line-height: 1.8;
+  resize: vertical;
+  outline: none;
 }
 
 .leader-save-btn:hover {
@@ -60,8 +53,8 @@
 /* PRAYER */
 
 .prayer-list {
-  margin-top: 22px;
-  margin-bottom: 24px;
+  margin-top: 18px;
+  margin-bottom: 0px;
 }
 
 .prayer-input-row {
@@ -76,22 +69,15 @@
   min-width: 0;
   width: 100%;
   max-width: 100%;
-  min-height: 42px;
-  padding: 14px 20px;
-  border-radius: 14px;
-  background: rgba(255,255,255,0.035);
-  border: 1px solid rgba(255,255,255,0.07);
+  min-height: 46px;
+  padding: 14px 18px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(215,178,109,0.10);
   color: white;
-  outline: none;
-}
-
-.prayer-add-btn {
-  flex-shrink: 0;
-}
-
-.empty-prayer {
-  color: rgba(255,255,255,0.35);
+  font-family: 'Inter', sans-serif;
   font-size: 14px;
+  outline: none;
 }
 
 /* HISTORY */
@@ -100,23 +86,19 @@
   margin-top: 22px;
 }
 
-.leader-history-title,
-.prayer-history-title {
-  font-size: 12px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.4);
-  margin-bottom: 20px;
-}
-
 .leader-history-item,
 .prayer-item {
   position: relative;
-  padding: 16px 40px 16px 16px;
-  margin-bottom: 10px;
-  border-radius: 16px;
-  background: rgba(255,255,255,0.028);
-  border: 1px solid rgba(255,255,255,0.06);
+  padding: 18px 42px 18px 18px;
+  margin-bottom: 12px;
+  border-radius: 20px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.035),
+      rgba(255,255,255,0.018)
+    );
+  border: 1px solid rgba(255,255,255,0.065);
 }
 
 .leader-history-date {
@@ -176,4 +158,272 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+/* JOURNAL FEEL */
+
+.leader-card:first-child {
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(215,178,109,0.08),
+      transparent 42%
+    ),
+    rgba(255,255,255,0.025);
+}
+
+.leader-textarea::placeholder {
+  color: rgba(255,255,255,0.35);
+}
+
+.leader-textarea:focus {
+  border-color: rgba(215,178,109,0.32);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(215,178,109,0.055),
+      rgba(255,255,255,0.025)
+    );
+}
+
+/* PRAYER FEEL */
+
+.leader-card:nth-child(2) {
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(215,178,109,0.06),
+      transparent 44%
+    ),
+    rgba(255,255,255,0.022);
+}
+
+.prayer-input::placeholder {
+  color: rgba(255,255,255,0.35);
+}
+
+.prayer-item::before {
+  content: '';
+  position: absolute;
+  left: 18px;
+  top: 18px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(215,178,109,0.55);
+}
+
+.prayer-text {
+  padding-left: 14px;
+}
+
+/* INLINE ACTIONS */
+
+.leader-textarea-wrap {
+  position: relative;
+}
+
+.leader-textarea {
+  padding-bottom: 56px;
+}
+
+.leader-save-btn {
+  position: absolute;
+
+  right: 16px;
+  bottom: 16px;
+
+  padding: 6px 10px;
+
+  border: none;
+  border-radius: 999px;
+
+  background: rgba(255,255,255,0.06);
+
+  color: rgba(255,255,255,0.52);
+
+  font-size: 11px;
+  font-family: 'Inter', sans-serif;
+
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  transition:
+    background .25s ease,
+    color .25s ease;
+}
+
+.leader-save-btn:hover {
+  background: rgba(215,178,109,0.12);
+  color: var(--gold);
+}
+
+.prayer-add-btn {
+  flex-shrink: 0;
+  min-height: 46px;
+  padding: 0 14px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.035);
+  border: 1px solid rgba(255,255,255,0.07);
+  color: rgba(255,255,255,0.58);
+  font-size: 10px;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.prayer-add-btn:hover {
+  background: rgba(215,178,109,0.12);
+  color: var(--gold);
+}
+
+/* FIX INLINE JOURNAL BUTTON */
+
+.leader-textarea-wrap {
+  position: relative;
+}
+
+.leader-textarea-wrap .leader-save-btn {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+
+  width: auto;
+  min-width: auto;
+  min-height: auto;
+
+  padding: 7px 13px;
+
+  border: 1px solid rgba(215,178,109,0.16);
+  border-radius: 999px;
+
+  background: rgba(12,12,15,0.72);
+  color: rgba(215,178,109,0.82);
+
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+}
+
+.leader-textarea-wrap .leader-save-btn:hover {
+  background: rgba(215,178,109,0.14);
+  color: var(--gold);
+}
+
+/* FIX PRAYER INLINE FIELD */
+
+.prayer-input-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.prayer-input-row .prayer-input {
+  min-width: 0;
+  min-height: 46px;
+  width: 100%;
+}
+
+.prayer-input-row .prayer-add-btn {
+  width: auto;
+  min-width: auto;
+  min-height: 46px;
+
+  padding: 0 16px;
+
+  border-radius: 16px;
+  white-space: nowrap;
+}
+
+/* FIX LEADER TOOLS SPACING AND TEXT WRAP */
+
+.leader-textarea {
+  padding-bottom: 68px;
+}
+
+.leader-textarea-wrap .leader-save-btn {
+  right: 18px;
+  bottom: 28px;
+}
+
+.leader-history {
+  margin-top: 18px;
+}
+
+.leader-history-title {
+  margin-bottom: 16px;
+}
+
+.leader-history-item {
+  overflow: hidden;
+}
+
+.leader-history-text,
+.prayer-text {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  white-space: normal;
+}
+
+.prayer-item {
+  min-height: auto;
+  align-items: flex-start;
+}
+
+.prayer-text {
+  display: block;
+  padding-right: 28px;
+  line-height: 1.7;
+}
+
+.leader-history {
+  margin-top: 18px;
+}
+
+/* FINAL SOFTENING — JOURNAL AND PRAYER */
+
+.leader-history-item,
+.prayer-item {
+  background: rgba(255,255,255,0.022);
+  border-color: rgba(255,255,255,0.045);
+  box-shadow: none;
+}
+
+.prayer-item {
+  padding: 20px 44px 20px 20px;
+}
+
+.prayer-item::before {
+  opacity: .45;
+}
+
+.leader-history-text,
+.prayer-text {
+  color: rgba(255,255,255,0.78);
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+/* SPACING FIX BETWEEN LEADER CARDS */
+
+.leader-card {
+  margin-bottom: 22px;
+}
+
+.leader-card:last-child {
+  margin-bottom: 0;
+}
+
+.leader-history {
+  margin-bottom: 6px;
 }

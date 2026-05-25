@@ -84,14 +84,22 @@ function renderEpisodeNavigation() {
 
       </button>
 
-      <div class="episode-progress">
+      <div class="episode-progress-wrap">
 
-        <div
-          class="episode-progress-bar"
-          id="episode-progress-bar"
-        ></div>
+  <div class="episode-scene-counter" id="episode-scene-counter">
+    Cena 1
+  </div>
 
-      </div>
+  <div class="episode-progress">
+
+    <div
+      class="episode-progress-bar"
+      id="episode-progress-bar"
+    ></div>
+
+  </div>
+
+</div>
 
       <button
         class="episode-nav-btn"
@@ -125,6 +133,14 @@ function updateEpisodeProgress() {
     ((AppState.timeline.current + 1) / items.length) * 100;
 
   progress.style.width = `${percentage}%`;
+
+  const counter =
+  document.getElementById('episode-scene-counter');
+
+if (counter) {
+  counter.textContent =
+    `Cena ${AppState.timeline.current + 1} de ${items.length}`;
+}
 
   if (nextBtn) {
 

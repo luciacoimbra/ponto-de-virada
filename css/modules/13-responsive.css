@@ -63,15 +63,13 @@
   }
 
   .prayer-input-row {
-    flex-direction: column;
-  }
+  flex-direction: row;
+  align-items: center;
+}
 
-  .prayer-add-btn,
-  .leader-save-btn,
-  .export-btn {
-    width: 100%;
-  }
-
+.export-btn {
+  width: 100%;
+}
   .timeline-item.is-current {
     padding: 24px 18px;
   }

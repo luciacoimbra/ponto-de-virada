@@ -221,8 +221,12 @@ function renderBlock(block, index) {
     : '';
 
   const paragraphs = (block.content || [])
-    .map(p => `<p>${p}</p>`)
-    .join('');
+  .map((p, i) => `
+    <p class="scene-paragraph scene-paragraph-${i + 1}">
+      ${p}
+    </p>
+  `)
+  .join('');
 
   const steps = (block.steps || [])
     .map((step, i) => `

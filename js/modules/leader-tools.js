@@ -12,19 +12,21 @@ function renderLeaderArea(id) {
 
         </div>
 
-        <textarea
-  id="leader-notes-${id}"
-  class="leader-textarea"
-  placeholder="Escreva observações, insights e direcionamentos..."
-></textarea>
+        <div class="leader-textarea-wrap">
 
-<div class="leader-actions">
+  <textarea
+    id="leader-notes-${id}"
+    class="leader-textarea"
+    placeholder="Escreva observações, insights e direcionamentos..."
+  ></textarea>
+
   <button
-    class="btn btn-gold leader-save-btn"
+    class="leader-save-btn"
     onclick="saveLeaderNotes(${id})"
   >
-    salvar notas
+    salvar
   </button>
+
 </div>
 
 <div
@@ -162,18 +164,11 @@ function loadPrayerRequests(id) {
   const prayers = Storage.getPrayers(id);
 
   if (!prayers.length) {
-    container.innerHTML = `
-      <div class="empty-prayer">
-        nenhum pedido registrado
-      </div>
-    `;
+    container.innerHTML = '';
     return;
   }
 
   container.innerHTML = `
-    <div class="prayer-history-title">
-      pedidos registrados
-    </div>
 
     ${prayers.map((p, index) => `
       <div class="prayer-item">
@@ -204,10 +199,7 @@ function loadLeaderHistory(id) {
   }
 
   container.innerHTML = `
-    <div class="leader-history-title">
-      notas salvas
-    </div>
-
+    
     ${notes.map((note, index) => `
       <div class="leader-history-item">
         <button

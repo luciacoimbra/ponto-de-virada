@@ -20,10 +20,12 @@
 }
 
 .timeline-marker {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   flex-shrink: 0;
+  align-self: stretch;
 }
 
 .timeline-dot {
@@ -37,9 +39,14 @@
 .timeline-line {
   width: 2px;
   flex: 1;
-  min-height: 100%;
+  min-height: 40px;
+  height: 100%;
   margin-top: 10px;
-  background: rgba(255,255,255,0.15);
+  background: linear-gradient(
+    to bottom,
+    rgba(215,178,109,0.28),
+    rgba(255,255,255,0.08)
+  );
 }
 
 .timeline-content {
@@ -186,26 +193,6 @@
 
 .timeline-item.is-current .timeline-preview p:last-child {
   margin-bottom: 0;
-}
-
-.timeline-item.is-current .timeline-preview p:nth-child(1) {
-  font-size: 17.5px;
-  color: rgba(255,255,255,0.9);
-}
-
-.timeline-item.is-current .timeline-preview p:nth-child(2) {
-  color: rgba(255,255,255,0.78);
-}
-
-.timeline-item.is-current .timeline-preview p:nth-child(3) {
-  color: rgba(255,255,255,0.72);
-}
-
-.timeline-item.is-current .timeline-preview p:nth-child(4) {
-  margin-top: 34px;
-  padding-top: 24px;
-  border-top: 1px solid rgba(255,255,255,0.08);
-  color: rgba(255,255,255,0.86);
 }
 
 .timeline-item.is-future {
@@ -382,16 +369,34 @@
   z-index: 50;
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 20px;
-  background: rgba(10,10,12,0.88);
-  border-top: 1px solid rgba(255,255,255,0.06);
+  gap: 14px;
+  padding: 18px 0 22px;
+  background:
+    linear-gradient(
+      to top,
+      rgba(12,12,15,0.96),
+      rgba(12,12,15,0.72),
+      transparent
+    );
   backdrop-filter: blur(18px);
 }
 
-.episode-progress {
+.episode-progress-wrap {
   flex: 1;
-  height: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.episode-scene-counter {
+  color: rgba(255,255,255,0.42);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.episode-progress {
+  height: 4px;
   overflow: hidden;
   border-radius: 999px;
   background: rgba(255,255,255,0.08);
@@ -403,27 +408,29 @@
   background:
     linear-gradient(
       90deg,
-      #c8a96b,
-      #f5e6c8
+      rgba(200,169,107,0.75),
+      rgba(245,230,200,0.95)
     );
-  transition: width .4s ease;
+  transition: width .7s cubic-bezier(.2, .8, .2, 1);
 }
 
 .episode-nav-btn {
-  padding: 12px 18px;
+  padding: 10px 4px;
   border: none;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.06);
-  color: white;
+  background: transparent;
+  color: rgba(255,255,255,0.58);
   cursor: pointer;
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  transition: all .3s ease;
+  transition:
+    color .25s ease,
+    transform .25s ease;
 }
 
 .episode-nav-btn:hover {
-  background: rgba(255,255,255,0.12);
+  color: var(--gold);
+  transform: translateY(-1px);
 }
 
 /* CINEMATIC BLOCK TYPES */
@@ -526,11 +533,16 @@
 }
 
 .timeline-discussion.is-current .question-card {
-  margin-bottom: 18px;
-  padding: 24px;
-  border-radius: 24px;
-  background: rgba(215,178,109,0.10);
-  border-color: rgba(215,178,109,0.22);
+  margin-bottom: 22px;
+  padding: 26px 24px;
+  border-radius: 26px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(215,178,109,0.12),
+      rgba(215,178,109,0.035)
+    );
+  border-color: rgba(215,178,109,0.24);
 }
 
 .timeline-discussion.is-current .question-number {
@@ -540,7 +552,8 @@
 
 .timeline-discussion.is-current .question-card p {
   font-size: 17px;
-  line-height: 1.75;
+  line-height: 1.85;
+  color: rgba(255,255,255,0.94);
 }
 
 .timeline-leader.is-current .leader-step {
@@ -599,3 +612,102 @@
     transform: scale(.96);
   }
 }
+
+/* SCENE PARAGRAPHS */
+
+.scene-paragraph {
+  position: relative;
+}
+
+.timeline-item.is-current .scene-paragraph {
+  padding: 0;
+}
+
+.timeline-item.is-current .scene-paragraph + .scene-paragraph {
+  margin-top: 30px;
+}
+
+.timeline-item.is-current .scene-paragraph-1 {
+  color: rgba(255,255,255,0.92);
+}
+
+.timeline-item.is-current .scene-paragraph-2,
+.timeline-item.is-current .scene-paragraph-3 {
+  color: rgba(255,255,255,0.76);
+}
+
+.timeline-item.is-current .scene-paragraph-4 {
+  margin-top: 38px;
+  padding-top: 26px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  color: rgba(215,178,109,0.9);
+}
+
+/* REFLECTION PAUSES */
+
+.timeline-reflection.is-current .scene-paragraph:last-child,
+.timeline-challenge.is-current .scene-paragraph:last-child,
+.timeline-closing.is-current .scene-paragraph:last-child {
+  margin-top: 40px;
+  padding: 24px 0 0;
+  border-top: 1px solid rgba(215,178,109,0.16);
+  color: rgba(215,178,109,0.92);
+}
+
+/* EMOTIONAL PROGRESSION */
+
+.timeline-item.is-current .timeline-line {
+  background: linear-gradient(
+    to bottom,
+    var(--gold),
+    rgba(215,178,109,0.18),
+    transparent
+  );
+}
+
+.timeline-item.is-current .timeline-dot {
+  animation: currentDotPulse 2.8s ease-in-out infinite;
+}
+
+.timeline-item.is-completed .timeline-dot {
+  box-shadow: 0 0 0 5px rgba(255,255,255,0.04);
+}
+
+@keyframes currentDotPulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 6px rgba(215,178,109,0.10),
+      0 0 0 0 rgba(215,178,109,0.16);
+  }
+
+  50% {
+    box-shadow:
+      0 0 0 8px rgba(215,178,109,0.08),
+      0 0 28px 0 rgba(215,178,109,0.18);
+  }
+}
+
+/* DENSE BLOCK RELIEF */
+
+.timeline-leader.is-current .timeline-preview,
+.timeline-discussion.is-current .timeline-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.timeline-leader.is-current .scene-paragraph,
+.timeline-discussion.is-current .scene-paragraph {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.timeline-leader.is-current .leader-step:last-child {
+  border-bottom: none;
+}
+
+.timeline-discussion.is-current .question-card:last-of-type {
+  margin-bottom: 0;
+}
+
